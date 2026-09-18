@@ -1,0 +1,26 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Supabase local dev
+.supabase/
+
+# Node / Expo
+node_modules/
+.expo/
+dist/
+build/
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
