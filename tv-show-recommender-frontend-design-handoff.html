@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PickTogether — Frontend Design Handoff</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2328;
+    background: #ffffff;
+    padding: 40px 24px 60px;
+  }
+  .page { max-width: 760px; margin: 0 auto; }
+
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  h2 { font-size: 16px; font-weight: 700; margin: 32px 0 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; }
+  h3 { font-size: 14px; font-weight: 600; margin: 18px 0 6px; }
+  p { margin-bottom: 10px; }
+  .muted { color: #57606a; font-size: 13px; }
+  code { font-family: "SF Mono", "Fira Code", monospace; font-size: 12px; background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 3px; padding: 1px 5px; }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .badge.blue { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
+  .badge.purple { background: #f5f3ff; border: 1px solid #ddd6fe; color: #6d28d9; }
+  .badge.green { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+  .badge.orange { background: #fff7ed; border: 1px solid #fed7aa; color: #c2410c; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+  th { background: #f7f8fa; text-align: left; padding: 8px 10px; font-weight: 600; border: 1px solid #e5e7eb; color: #57606a; }
+  td { padding: 8px 10px; border: 1px solid #e5e7eb; vertical-align: top; }
+  tr:nth-child(even) td { background: #fafafa; }
+
+  .card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 16px; }
+  .card h3 { margin-top: 0; font-size: 15px; }
+
+  .screen-section { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
+  .screen-header { background: #f7f8fa; padding: 12px 16px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; gap: 10px; }
+  .screen-header .screen-name { font-weight: 700; font-size: 14px; }
+  .screen-header .screen-route { font-size: 12px; color: #57606a; font-family: "SF Mono", monospace; }
+  .screen-body { padding: 14px 16px; }
+  .screen-body p { font-size: 13px; margin-bottom: 8px; }
+
+  .component-list { list-style: none; padding: 0; }
+  .component-list li { font-size: 13px; padding: 4px 0; border-bottom: 1px solid #e5e7eb; display: flex; gap: 8px; }
+  .component-list li:last-child { border-bottom: none; }
+  .comp-name { font-weight: 600; min-width: 200px; color: #3b82d4; }
+  .comp-desc { color: #57606a; }
+
+  .prop-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  .prop-table th { background: #f0f0f5; padding: 5px 8px; text-align: left; border: 1px solid #e5e7eb; }
+  .prop-table td { padding: 5px 8px; border: 1px solid #e5e7eb; }
+
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin: 10px 0; font-size: 12px; }
+  .flow-step { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 6px 10px; text-align: center; }
+  .flow-arrow { padding: 0 6px; color: #57606a; font-size: 14px; }
+
+  .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px; }
+  .note strong { color: #92400e; }
+
+  .divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+
+  .footer { text-align: center; font-size: 12px; color: #57606a; border-top: 1px solid #e5e7eb; padding-top: 16px; margin-top: 48px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>PickTogether — Frontend Design Handoff</h1>
+  <p class="muted">TV Show Recommender · Hackathon Partner Handoff Document · <strong>Open <code>mockup.html</code> to preview all screens interactively in a phone frame.</strong></p>
+  <div class="badge-row">
+    <span class="badge blue">React Native</span>
+    <span class="badge blue">Expo Router</span>
+    <span class="badge purple">Supabase Client</span>
+    <span class="badge green">react-native-maps</span>
+    <span class="badge orange">expo-notifications</span>
+  </div>
+
+  <div class="note">
+    <strong>For the frontend dev:</strong> This document covers every screen, its components, data it consumes, and design decisions. The backend (Supabase schema + Edge Functions) and scoring engine are handled separately. Your job is to build the screens and components listed here — the data contracts tell you exactly what shape the data will arrive in. See <code>mockup.html</code> for the full interactive visual mockup.
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CONCEPT & UX PHILOSOPHY
+  ══════════════════════════════════════════════════════════ -->
+  <h2>Concept &amp; UX Philosophy</h2>
+
+  <div class="card">
+    <h3>The Problem We Solve</h3>
+    <p>When couples, families, or friend groups sit down to watch TV together, the "what should we watch?" argument can kill the mood entirely. Everyone has different tastes, and endlessly scrolling through Netflix while someone vetoes every suggestion is exhausting. <strong>PickTogether</strong> removes the friction with a single mechanic: each person gets an AI-personalised recommendation based on their taste profile, and when you want to watch together, you settle it with Rock Paper Scissors. Fast, fair, a little fun.</p>
+  </div>
+
+  <div class="card">
+    <h3>Core UX Principles</h3>
+    <p><strong>1. Seamless — zero decision fatigue.</strong> The app makes the recommendation for you. You never browse. You arrive, you see one show, you either watch it or challenge someone. Every screen has a single clear primary action.</p>
+    <p><strong>2. Social without being exhausting.</strong> Friends are useful — you can see what they're watching, nudge them to watch the same thing, and settle conflicts by playing a quick RPS match. There are no feeds to scroll, no likes, no comments.</p>
+    <p><strong>3. Punchy micro-moments.</strong> The RPS result reveal (3 → 2 → 1 countdown, winner flash) is the emotional centrepiece. It should feel like a mini game show. Keep it snappy — under 3 seconds total.</p>
+    <p><strong>4. Content-first visual design.</strong> Show poster art dominates every screen. The UI chrome recedes; the show becomes the hero. Dark gradient overlays on poster images, large bold typography, generous negative space.</p>
+  </div>
+
+  <div class="card">
+    <h3>App Name &amp; Identity</h3>
+    <p><strong>App name:</strong> PickTogether</p>
+    <p><strong>Accent palette:</strong> Indigo → Purple gradient (<code>#6366f1</code> → <code>#a855f7</code>). Used for CTAs, active states, brand moments. Never for destructive actions.</p>
+    <p><strong>Background:</strong> Off-white <code>#f8f7fc</code> for main screens, pure white <code>#ffffff</code> for cards. Deep navy/purple for the splash and RPS result screens to signal "event mode".</p>
+    <p><strong>Icon:</strong> TV screen with a play arrow — simple, scalable. Rounded-rect app icon with the indigo→purple gradient fill.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       USER FLOW MAP
+  ══════════════════════════════════════════════════════════ -->
+  <h2>User Flow Map</h2>
+  <p class="muted">Two main journeys: solo (just get a rec and mark seen) and social (challenge a friend via RPS). Both start from Home.</p>
+
+  <h3>First-Time Flow</h3>
+  <div class="flow">
+    <div class="flow-step">Splash<br/><span style="font-size:10px;color:#57606a">/auth</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Onboarding<br/><span style="font-size:10px;color:#57606a">8 questions</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Home<br/><span style="font-size:10px;color:#57606a">First pick</span></div>
+  </div>
+
+  <h3>Solo Loop (daily use)</h3>
+  <div class="flow">
+    <div class="flow-step">Home<br/><span style="font-size:10px;color:#57606a">See today's rec</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Tap poster<br/><span style="font-size:10px;color:#57606a">Detail sheet</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Mark Seen<br/><span style="font-size:10px;color:#57606a">or skip</span></div>
+  </div>
+
+  <h3>Social / RPS Loop</h3>
+  <div class="flow">
+    <div class="flow-step">Home<br/><span style="font-size:10px;color:#57606a">Tap Challenge</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Pick Show<br/><span style="font-size:10px;color:#57606a">/rps/pick-show</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Pick Opponent<br/><span style="font-size:10px;color:#57606a">/rps/pick-opponent</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Waiting<br/><span style="font-size:10px;color:#57606a">30 min window</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Choose R/P/S<br/><span style="font-size:10px;color:#57606a">Both players</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Result 🎉<br/><span style="font-size:10px;color:#57606a">Winner's show wins</span></div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       DESIGN SYSTEM
+  ══════════════════════════════════════════════════════════ -->
+  <h2>Design System</h2>
+
+  <h3>Colour Tokens</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><code>brand-primary</code></td><td><code>#6366f1</code></td><td>Primary CTA background start, active tab indicator</td></tr>
+      <tr><td><code>brand-secondary</code></td><td><code>#a855f7</code></td><td>Primary CTA background end (gradient)</td></tr>
+      <tr><td><code>surface</code></td><td><code>#ffffff</code></td><td>Card backgrounds, bottom sheet</td></tr>
+      <tr><td><code>background</code></td><td><code>#f8f7fc</code></td><td>Screen background</td></tr>
+      <tr><td><code>border</code></td><td><code>#e5e7eb</code></td><td>Card borders, dividers, secondary button borders</td></tr>
+      <tr><td><code>text-primary</code></td><td><code>#1f2328</code></td><td>Headings, primary body text</td></tr>
+      <tr><td><code>text-muted</code></td><td><code>#57606a</code></td><td>Secondary text, overviews</td></tr>
+      <tr><td><code>text-faint</code></td><td><code>#adb5bd</code></td><td>Placeholders, timestamps, hints</td></tr>
+      <tr><td><code>danger</code></td><td><code>#dc2626</code></td><td>Sign out, destructive actions only</td></tr>
+      <tr><td><code>success</code></td><td><code>#15803d</code></td><td>Won badges, confirmation toasts</td></tr>
+      <tr><td><code>warning</code></td><td><code>#92400e</code></td><td>Pending badges, expiry warnings</td></tr>
+      <tr><td><code>dark-bg</code></td><td><code>#0f0c29 → #24243e</code></td><td>Splash screen, RPS result screen gradient</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Typography Scale</h3>
+  <table>
+    <thead><tr><th>Role</th><th>Size</th><th>Weight</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td>Display</td><td>28–30px</td><td>800–900</td><td>App name, result winner reveal</td></tr>
+      <tr><td>Title</td><td>20–22px</td><td>700–800</td><td>Screen headings, show titles on poster</td></tr>
+      <tr><td>Heading</td><td>16–18px</td><td>700</td><td>Card headings, section labels</td></tr>
+      <tr><td>Body</td><td>14px</td><td>400–500</td><td>Overviews, descriptions</td></tr>
+      <tr><td>Small</td><td>12–13px</td><td>400–600</td><td>Tags, metadata, timestamps</td></tr>
+      <tr><td>Micro</td><td>10–11px</td><td>600–700</td><td>Badge labels, overline labels, tab labels</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Spacing &amp; Radius</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Page horizontal padding</td><td>20px</td></tr>
+      <tr><td>Card border-radius (large)</td><td>20px</td></tr>
+      <tr><td>Card border-radius (medium)</td><td>16px</td></tr>
+      <tr><td>Button border-radius</td><td>12–14px</td></tr>
+      <tr><td>Chip/badge border-radius</td><td>20px (pill)</td></tr>
+      <tr><td>Min touch target</td><td>44×44pt (Apple HIG)</td></tr>
+      <tr><td>Icon size in buttons</td><td>18px</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Elevation &amp; Shadow</h3>
+  <table>
+    <thead><tr><th>Level</th><th>Usage</th><th>CSS</th></tr></thead>
+    <tbody>
+      <tr><td>0 — flat</td><td>Tab bar, header bars</td><td><code>border-top: 1px solid #f0f0f5</code></td></tr>
+      <tr><td>1 — low</td><td>Friend cards, match cards, settings rows</td><td><code>box-shadow: 0 1px 8px rgba(0,0,0,.05)</code></td></tr>
+      <tr><td>2 — medium</td><td>Recommendation card, session widget</td><td><code>box-shadow: 0 2px 12px rgba(0,0,0,.06)</code></td></tr>
+      <tr><td>3 — high</td><td>Map pins, bottom sheet handle</td><td><code>box-shadow: 0 2px 8px rgba(0,0,0,.15)</code></td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       ANIMATION SPEC
+  ══════════════════════════════════════════════════════════ -->
+  <h2>Animation &amp; Motion Spec</h2>
+
+  <div class="card">
+    <h3>Principles</h3>
+    <p>All transitions should feel <em>responsive, not flashy</em>. The exception is the RPS result reveal, which is intentionally dramatic. Everywhere else: short durations (150–300ms), ease-out curves, no looping animations except subtle loading pulses.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Element</th><th>Animation</th><th>Duration</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Screen push/pop</td><td>Horizontal slide (Expo Router default)</td><td>300ms</td><td>Native feel, do not override</td></tr>
+      <tr><td>Tab switch</td><td>Fade (no slide)</td><td>200ms</td><td>Prevents jarring lateral motion</td></tr>
+      <tr><td>Chip select/deselect</td><td>Background fill + scale(.96) on press</td><td>150ms</td><td><code>activeOpacity={0.85}</code> in RN</td></tr>
+      <tr><td>Primary button press</td><td>Scale(.97) + slight darken</td><td>100ms</td><td>Immediate feedback</td></tr>
+      <tr><td>RPS button press → locked</td><td>Scale(.93) then border glow</td><td>150ms</td><td>Use <code>Animated.spring</code></td></tr>
+      <tr><td>RPS result countdown</td><td>Large number fades in/out 3→2→1</td><td>600ms each step</td><td>Opacity + scale(1.2→1)</td></tr>
+      <tr><td>RPS result winner reveal</td><td>Slide up + fade in</td><td>400ms</td><td>After countdown ends</td></tr>
+      <tr><td>Loading skeleton shimmer</td><td>Shimmer gradient sweeps left→right</td><td>1200ms loop</td><td>Use <code>react-native-skeleton-placeholder</code></td></tr>
+      <tr><td>Bottom sheet open</td><td>Spring up from bottom</td><td>350ms</td><td><code>@gorhom/bottom-sheet</code> default</td></tr>
+      <tr><td>Toast appear/dismiss</td><td>Slide down from top, fade out</td><td>250ms in / 200ms out</td><td>Auto-dismiss after 2.5s</td></tr>
+      <tr><td>Waiting pulse (RPS wait)</td><td>Gentle opacity pulse (1→0.4→1)</td><td>1600ms loop</td><td>Stop when opponent accepts</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCREEN-BY-SCREEN DESIGN DECISIONS
+  ══════════════════════════════════════════════════════════ -->
+  <h2>Screen-by-Screen Design Decisions</h2>
+
+  <div class="card">
+    <h3>Splash / Auth</h3>
+    <p>Deep navy-to-purple full-bleed gradient. Logo centred vertically at ~45% from top (feels higher than geometric centre — optical illusion). Tagline is two lines max: <em>"Stop arguing. Start watching."</em> / <em>"One show everyone agrees on."</em> Social login buttons stacked vertically — Google first (larger audience), Apple second. No email/password to eliminate friction.</p>
+    <p>On <strong>first launch</strong> after auth: route to Onboarding. On <strong>return launch</strong>: route directly to Home. Handle via checking <code>tasteProfile</code> existence before navigation.</p>
+  </div>
+
+  <div class="card">
+    <h3>Onboarding</h3>
+    <p>One question per screen — never more. The progress bar at top shows exactly where the user is. Back navigation is always available. The "Continue" button is disabled until at least one option is selected (hard validation, not just a warning). Questions 1 and 8 are multi-select; all others are single-select.</p>
+    <p><strong>Chip layout:</strong> Wrap flow, left-aligned, 8px gap. Selected chips use the brand gradient fill. The chip height is 36px (generous touch target). On single-select questions, selecting one chip auto-deselects any other.</p>
+    <p><strong>Onboarding tone:</strong> Keep it light — "What genres do you love?" not "Select your preferred content categories." The copy should feel like a friend asking, not a form.</p>
+  </div>
+
+  <div class="card">
+    <h3>Home Screen</h3>
+    <p>This is the app's heart. It must answer two questions instantly: <em>"What should I watch tonight?"</em> and <em>"Want to sort out a group watch?"</em> The recommendation card is the hero — poster art fills most of its height, with a gradient overlay and title/meta overlaid. Below it sits the "Watch Together" session widget, which is the social entry point.</p>
+    <p><strong>Recommendation card poster height:</strong> 220px. The gradient overlay goes from transparent at 50% to 70% opacity black at the bottom. Show title in 20px/800 weight white. Genres and network as small pills.</p>
+    <p><strong>Countdown label</strong> between card and session widget: small, muted, e.g. "Next pick in · 18h 22m". It should not compete visually with the card.</p>
+    <p><strong>Empty state:</strong> If no recommendation exists yet, show an illustrated placeholder (e.g. a TV set with a "?" in screen) and copy: "Your first pick is on its way — we're personalising it now."</p>
+  </div>
+
+  <div class="card">
+    <h3>Onboarding → Home transition</h3>
+    <p>After the last onboarding question, do not navigate immediately. Show a brief "Building your taste profile..." loading screen (1–2 seconds, animated progress bar or spinner) before routing to Home. This sets the expectation that something personalised is happening and makes the first recommendation feel earned.</p>
+  </div>
+
+  <div class="card">
+    <h3>RPS Flow — Key UX Decisions</h3>
+    <p><strong>Pick Show screen:</strong> Default-select today's recommendation with a highlighted border. The TVDB search option is secondary (collapsed or below the rec card). Most users will just use their daily rec.</p>
+    <p><strong>Choose R/P/S screen:</strong> Both shows are displayed as side-by-side posters with "VS" in the middle — this is the moment of competitive framing. The three RPS buttons are large (80px height), icon + label, equal width. Once tapped, the entire picker disables and a pulsing "Waiting for [name]..." label appears. This screen must respond to Realtime — when both picks are in, auto-navigate without user action.</p>
+    <p><strong>Result screen:</strong> Dark mode only. 3→2→1 countdown using large text (80px+), each step fades in/out over 600ms. Then the winner card slides up. The losing show is NOT shown — only the winner's show is featured, keeping focus on what to watch next, not on who lost.</p>
+  </div>
+
+  <div class="card">
+    <h3>Friends Screen</h3>
+    <p>Each friend row shows their avatar, name, and what they're watching today (poster thumbnail + title). The "Nudge" button sends a push notification to the friend encouraging them to watch the same show. It disables after use (until next day) to prevent spam — label changes to "Sent ✓".</p>
+    <p><strong>Pending requests banner:</strong> High-contrast blue banner at the very top when there are pending requests. Dismisses once requests are handled.</p>
+  </div>
+
+  <div class="card">
+    <h3>Map Screen</h3>
+    <p>The map is a discovery and social proof surface — it shows users they're not alone in their tastes. Initial region = contiguous US. Each pin is a small card bubble (show poster thumbnail + title) anchored to a zip code centroid. Tapping a pin shows a callout with the show + "N people in this area".</p>
+    <p><strong>Pin clustering:</strong> If many zips have the same show, consider a heat-map overlay instead of overlapping pins. For hackathon scope, individual pins are fine.</p>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Navigation Structure</h2>
+  <p class="muted">Using Expo Router (file-based routing). Bottom tab navigator for main sections, stack navigators for flows.</p>
+  <table>
+    <thead><tr><th>Tab</th><th>Icon</th><th>Route</th><th>Stack screens within</th></tr></thead>
+    <tbody>
+      <tr><td>Home</td><td>📺</td><td><code>/</code></td><td>Home, Settings</td></tr>
+      <tr><td>Map</td><td>🗺️</td><td><code>/map</code></td><td>Map View</td></tr>
+      <tr><td>Friends</td><td>👥</td><td><code>/friends</code></td><td>Friends Feed, Friend Profile, Add Friends, QR Scanner</td></tr>
+      <tr><td>Challenges</td><td>🎮</td><td><code>/rps</code></td><td>RPS Home, Pick Show, Pick Opponent, Waiting, Choose, Result</td></tr>
+    </tbody>
+  </table>
+
+  <p class="muted">Auth screens (<code>/auth</code>) and Onboarding (<code>/onboarding</code>) live outside the tab navigator and only show on first launch.</p>
+
+  <hr class="divider" />
+
+  
+  <h2>Auth Screens</h2>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Splash / Login</span>
+      <span class="screen-route">/auth</span>
+    </div>
+    <div class="screen-body">
+      <p>Full-screen branded screen. App logo/name, tagline, two login buttons. No email/password — social only.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">SocialLoginButton</span><span class="comp-desc">Accepts <code>provider: "google" | "apple"</code>, <code>onPress</code>. Shows provider logo + label.</span></li>
+        <li><span class="comp-name">AppLogo</span><span class="comp-desc">App name + icon mark, centred on screen.</span></li>
+      </ul>
+      <p class="muted" style="margin-top:10px">On successful login, check if profile + tasteProfile exist → route to Onboarding or Home.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Onboarding Flow</h2>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Onboarding Q&amp;A</span>
+      <span class="screen-route">/onboarding</span>
+    </div>
+    <div class="screen-body">
+      <p>8-step wizard. One question per screen with a progress bar. Answers accumulate in local state and are submitted as a single <code>tasteProfile</code> object on completion.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">OnboardingProgress</span><span class="comp-desc">Step indicator, e.g. "3 of 8". Linear bar.</span></li>
+        <li><span class="comp-name">QuestionCard</span><span class="comp-desc">Accepts <code>question: string</code>, <code>type: "multi-select" | "single-select"</code>, <code>options: string[]</code>, <code>onAnswer</code>.</span></li>
+        <li><span class="comp-name">OptionChip</span><span class="comp-desc">Selectable pill. Selected state = filled. Used inside QuestionCard.</span></li>
+        <li><span class="comp-name">OnboardingNav</span><span class="comp-desc">Back + Next/Finish buttons. Next disabled until at least one option selected.</span></li>
+      </ul>
+
+      <p style="margin-top:10px;font-weight:600;font-size:13px">Questions &amp; option sets:</p>
+      <table class="prop-table">
+        <thead><tr><th>#</th><th>Question</th><th>Type</th><th>Options</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Favorite genres?</td><td>multi-select</td><td>Drama, Comedy, Thriller, Sci-Fi, Fantasy, Horror, Crime, Documentary, Animation, Romance</td></tr>
+          <tr><td>2</td><td>Preferred era?</td><td>single-select</td><td>Classic (pre-1990), 90s, 2000s, 2010s, Modern (2020+), No preference</td></tr>
+          <tr><td>3</td><td>Preferred pace?</td><td>single-select</td><td>Slow-burn, Fast-paced, No preference</td></tr>
+          <tr><td>4</td><td>Ongoing or completed shows?</td><td>single-select</td><td>Ongoing, Completed, No preference</td></tr>
+          <tr><td>5</td><td>Preferred language?</td><td>single-select</td><td>English, Spanish, Korean, Japanese, French, Any</td></tr>
+          <tr><td>6</td><td>Episode length?</td><td>single-select</td><td>Short (~30 min), Long (~60 min+), No preference</td></tr>
+          <tr><td>7</td><td>Mood preference?</td><td>single-select</td><td>Lighthearted, Dark &amp; Gritty, Mixed, No preference</td></tr>
+          <tr><td>8</td><td>Platforms you have access to?</td><td>multi-select</td><td>Netflix, HBO Max, Hulu, Apple TV+, Amazon Prime, Disney+, Peacock, Paramount+, Other</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Home Screen</h2>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Home — Today's Recommendation</span>
+      <span class="screen-route">/</span>
+    </div>
+    <div class="screen-body">
+      <p>Primary screen. Shows the user's current recommendation as a large card. If no recommendation exists yet, shows a placeholder state.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">RecommendationCard</span><span class="comp-desc">Large card. Props: <code>showTitle</code>, <code>overview</code>, <code>posterUrl</code>, <code>genres[]</code>, <code>network</code>, <code>year</code>. Tap expands to detail.</span></li>
+        <li><span class="comp-name">RecommendationDetail</span><span class="comp-desc">Bottom sheet or full screen. Same data + "Mark as Seen" button, "Challenge to RPS" button.</span></li>
+        <li><span class="comp-name">EmptyRecommendation</span><span class="comp-desc">Placeholder shown before first rec is generated. "Your first pick is on its way" state.</span></li>
+        <li><span class="comp-name">NextPickCountdown</span><span class="comp-desc">Small muted label showing time until next scheduled recommendation.</span></li>
+      </ul>
+
+      <p style="margin-top:10px;font-weight:600;font-size:13px">Data shape for RecommendationCard:</p>
+      <table class="prop-table">
+        <thead><tr><th>Field</th><th>Type</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>showTitle</td><td>string</td><td>recommendations.show_title</td></tr>
+          <tr><td>overview</td><td>string</td><td>recommendations.overview</td></tr>
+          <tr><td>posterUrl</td><td>string</td><td>recommendations.poster_url (TVDB CDN)</td></tr>
+          <tr><td>recommendedAt</td><td>ISO timestamp</td><td>recommendations.recommended_at</td></tr>
+          <tr><td>seen</td><td>boolean</td><td>recommendations.seen</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Map Screen</h2>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">US Map View</span>
+      <span class="screen-route">/map</span>
+    </div>
+    <div class="screen-body">
+      <p>Uses <code>react-native-maps</code>. Shows the US. Each unique zip code with at least one recommendation gets a pin. Tapping a pin shows a small callout with the show title and poster thumbnail.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">RecommendationMap</span><span class="comp-desc">Wraps MapView. Renders markers from <code>pins[]</code> prop.</span></li>
+        <li><span class="comp-name">ZipPin</span><span class="comp-desc">Custom marker. Props: <code>zipCode</code>, <code>showTitle</code>, <code>posterUrl</code>, <code>count</code> (how many users in that zip).</span></li>
+        <li><span class="comp-name">PinCallout</span><span class="comp-desc">Shown on marker tap. Show poster thumbnail + title + "<code>N</code> people".</span></li>
+      </ul>
+
+      <p style="margin-top:10px;font-weight:600;font-size:13px">Data shape for each pin:</p>
+      <table class="prop-table">
+        <thead><tr><th>Field</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>zipCode</td><td>string</td></tr>
+          <tr><td>lat</td><td>number (derived from zip centroid)</td></tr>
+          <tr><td>lng</td><td>number</td></tr>
+          <tr><td>showTitle</td><td>string (most recommended in that zip today)</td></tr>
+          <tr><td>posterUrl</td><td>string</td></tr>
+          <tr><td>count</td><td>number</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:8px">Data fetched from Edge Function <code>getRecommendationsNearZip</code>. Initial map bounds = contiguous US.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Friends Screens</h2>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Friends Feed</span>
+      <span class="screen-route">/friends</span>
+    </div>
+    <div class="screen-body">
+      <p>Scrollable list of accepted friends. Each row shows the friend's avatar, name, and their current recommendation. A "Promote" button sends them a push nudge.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">FriendFeedItem</span><span class="comp-desc">Row component. Props: <code>profile</code>, <code>recommendation</code>, <code>onPromote</code>, <code>onViewProfile</code>.</span></li>
+        <li><span class="comp-name">PromoteButton</span><span class="comp-desc">Small action button. Shows confirmation toast on press. Disabled after promote sent (until next day).</span></li>
+        <li><span class="comp-name">PendingRequestsBanner</span><span class="comp-desc">Shows at top if there are incoming friend requests. Tap to view list.</span></li>
+        <li><span class="comp-name">EmptyFriends</span><span class="comp-desc">Illustrated empty state with "Add your first friend" CTA.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Add Friends</span>
+      <span class="screen-route">/friends/add</span>
+    </div>
+    <div class="screen-body">
+      <p>Three ways to add a friend. Tabs or segmented control across the top.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">UsernameSearch</span><span class="comp-desc">Text input + search button. Returns <code>UserSearchResult[]</code>. Each result has avatar, name, "Add" button.</span></li>
+        <li><span class="comp-name">QRCodeDisplay</span><span class="comp-desc">Shows the current user's QR code (value = their <code>qr_code</code> field, e.g. <code>@ahmed</code>). Uses <code>react-native-qrcode-svg</code>. Share button below.</span></li>
+        <li><span class="comp-name">QRScanner</span><span class="comp-desc">Camera view using <code>expo-camera</code>. Scans a friend's QR, resolves username, shows confirm sheet.</span></li>
+        <li><span class="comp-name">ShareLinkButton</span><span class="comp-desc">Triggers native share sheet with a deep link <code>tvrecc://add/@username</code>.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Friend Profile</span>
+      <span class="screen-route">/friends/[id]</span>
+    </div>
+    <div class="screen-body">
+      <p>Friend's avatar, display name, current recommendation card, and a "Challenge to RPS" button that deep-links into the RPS flow with this friend pre-selected.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Rock Paper Scissors Screens</h2>
+
+  <div class="note"><strong>Real-time note:</strong> All RPS screens after a match is created subscribe to a Supabase Realtime channel on <code>rps_matches</code> for their match ID. UI updates reactively — no manual refresh needed.</div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">RPS Home</span>
+      <span class="screen-route">/rps</span>
+    </div>
+    <div class="screen-body">
+      <p>Shows active/pending matches. "New Challenge" button starts the flow. Incoming challenges appear as cards with Accept/Decline.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">ActiveMatchCard</span><span class="comp-desc">Shows opponent name, status badge, expires countdown if pending.</span></li>
+        <li><span class="comp-name">IncomingChallengeCard</span><span class="comp-desc">Opponent name, their show pick, Accept / Decline buttons.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Pick Show</span>
+      <span class="screen-route">/rps/pick-show</span>
+    </div>
+    <div class="screen-body">
+      <p>Two options: use today's recommendation (pre-filled card shown) or search TVDB. TVDB search is a text input that hits the TVDB <code>/search</code> endpoint and returns a list of shows.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">TodaysRecOption</span><span class="comp-desc">Tappable card showing today's rec. Selected state = highlighted border.</span></li>
+        <li><span class="comp-name">TVDBSearchInput</span><span class="comp-desc">Search input with debounced query. Shows <code>TVDBSearchResult[]</code> list below.</span></li>
+        <li><span class="comp-name">TVDBSearchResult</span><span class="comp-desc">Row with poster thumbnail, show title, year, network. Tap to select.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Pick Opponent</span>
+      <span class="screen-route">/rps/pick-opponent</span>
+    </div>
+    <div class="screen-body">
+      <p>List of accepted friends. Tap one to confirm and send the challenge. Shows selected show at top for context.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">FriendPickerList</span><span class="comp-desc">Scrollable friend list. Each row: avatar, name, tap to select.</span></li>
+        <li><span class="comp-name">SelectedShowHeader</span><span class="comp-desc">Small sticky header showing your chosen show so the user remembers what they picked.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Waiting for Acceptance</span>
+      <span class="screen-route">/rps/waiting/[matchId]</span>
+    </div>
+    <div class="screen-body">
+      <p>Shown to the challenger while waiting for the opponent to accept. Counts down from 30 minutes. Cancel button revokes the challenge.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">ExpiryCountdown</span><span class="comp-desc">MM:SS countdown. Pulls <code>expires_at</code> from match. Turns red under 5 min.</span></li>
+        <li><span class="comp-name">WaitingAnimation</span><span class="comp-desc">Simple pulsing indicator — no heavy animations.</span></li>
+      </ul>
+      <p class="muted">When Realtime fires with <code>status = "accepted"</code>, auto-navigate to Choose screen.</p>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Choose R/P/S</span>
+      <span class="screen-route">/rps/choose/[matchId]</span>
+    </div>
+    <div class="screen-body">
+      <p>Both users land here simultaneously. Shows both shows (yours vs. opponent's). Three large buttons: Rock, Paper, Scissors. Once you tap, your choice is locked and submitted. Shows "Waiting for opponent..." after you've chosen.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">ShowVersusCard</span><span class="comp-desc">Side-by-side layout: your show poster vs. opponent's. "VS" divider in the middle.</span></li>
+        <li><span class="comp-name">RPSPicker</span><span class="comp-desc">Three large buttons with icons (✊ ✋ ✌️). Disabled after selection. Selected button shows filled/active state.</span></li>
+        <li><span class="comp-name">OpponentStatus</span><span class="comp-desc">Small label: "Waiting for {name}..." or "Opponent is ready!"</span></li>
+      </ul>
+      <p class="muted">When Realtime fires with both choices set, auto-navigate to Result screen.</p>
+    </div>
+  </div>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Result</span>
+      <span class="screen-route">/rps/result/[matchId]</span>
+    </div>
+    <div class="screen-body">
+      <p>Animated reveal screen. Shows 3-2-1 countdown, then flips to reveal winner and winning show. Both users see this simultaneously via Realtime.</p>
+      <ul class="component-list">
+        <li><span class="comp-name">CountdownReveal</span><span class="comp-desc">Large centred "3 → 2 → 1" number sequence, then fades to result.</span></li>
+        <li><span class="comp-name">RPSResultCard</span><span class="comp-desc">Winner name + "WINS!" label, winning show poster + title, both RPS choices shown side by side.</span></li>
+        <li><span class="comp-name">WatchTogetherCTA</span><span class="comp-desc">"Add to watchlist" or "Share" button. Optional — nice to have.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Settings Screen</h2>
+
+  <div class="screen-section">
+    <div class="screen-header">
+      <span class="screen-name">Settings</span>
+      <span class="screen-route">/settings</span>
+    </div>
+    <div class="screen-body">
+      <ul class="component-list">
+        <li><span class="comp-name">NotificationIntervalPicker</span><span class="comp-desc">Options: Daily, Every 2 days, Weekly, Custom. Updates <code>notif_interval</code> on profile.</span></li>
+        <li><span class="comp-name">TasteProfileEditor</span><span class="comp-desc">Re-runs the onboarding Q&amp;A flow (same QuestionCard components) to update answers.</span></li>
+        <li><span class="comp-name">ProfileHeader</span><span class="comp-desc">Avatar, display name, QR code mini-view, zip code edit field.</span></li>
+        <li><span class="comp-name">SignOutButton</span><span class="comp-desc">Calls Supabase <code>signOut()</code>, routes back to /auth.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Shared / Global Components</h2>
+  <ul class="component-list">
+    <li><span class="comp-name">Avatar</span><span class="comp-desc">Circular user image. Props: <code>photoUrl</code>, <code>displayName</code> (fallback initials), <code>size</code>.</span></li>
+    <li><span class="comp-name">ShowPosterThumbnail</span><span class="comp-desc">Fixed-ratio image with fallback placeholder. Props: <code>posterUrl</code>, <code>size: "sm" | "md" | "lg"</code>.</span></li>
+    <li><span class="comp-name">GenreBadge</span><span class="comp-desc">Pill label for a single genre string.</span></li>
+    <li><span class="comp-name">StatusBadge</span><span class="comp-desc">Coloured pill for RPS match status: pending (yellow), accepted (blue), resolved (green), expired (grey).</span></li>
+    <li><span class="comp-name">Toast</span><span class="comp-desc">Lightweight top-of-screen notification for success/error messages.</span></li>
+    <li><span class="comp-name">LoadingSkeleton</span><span class="comp-desc">Shimmer placeholder for cards and list items while data loads.</span></li>
+    <li><span class="comp-name">BottomSheet</span><span class="comp-desc">Reusable swipe-up sheet (use <code>@gorhom/bottom-sheet</code>). Used for details, confirmations.</span></li>
+  </ul>
+
+  <hr class="divider" />
+
+  
+  <h2>Design Notes</h2>
+  <div class="card">
+    <h3>Tone</h3>
+    <p>Casual, social, fun. This is a recommendation + social app — it should feel closer to Letterboxd or Spotify than a utility app. Use show poster art liberally since TVDB provides it.</p>
+  </div>
+  <div class="card">
+    <h3>Typography &amp; Spacing</h3>
+    <p>Use the system font stack. Minimum 14px body, 16–20px for titles. Generous touch targets (min 44×44pt per Apple HIG). Bottom tab bar should account for safe area insets on both iOS and Android.</p>
+  </div>
+  <div class="card">
+    <h3>RPS Screens</h3>
+    <p>These are the highest-energy screens — the Choose and Result screens in particular should feel reactive and punchy. The countdown (3-2-1) before the result reveal is a key moment of delight. Keep animations short and snappy, no looping.</p>
+  </div>
+  <div class="card">
+    <h3>Loading States</h3>
+    <p>Every screen that fetches data needs a skeleton loader — not a spinner. The RecommendationCard skeleton should mimic the poster + text layout. TVDB search results should show 3–4 skeleton rows while fetching.</p>
+  </div>
+  <div class="card">
+    <h3>Empty States</h3>
+    <p>Every list screen (Friends Feed, RPS Home, Promotions) needs a designed empty state — a short message and a relevant CTA. No blank white screens.</p>
+  </div>
+
+  <hr class="divider" />
+
+  
+  <h2>Key Frontend Dependencies</h2>
+  <table>
+    <thead><tr><th>Package</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>expo-router</code></td><td>File-based routing + navigation</td></tr>
+      <tr><td><code>@supabase/supabase-js</code></td><td>Auth + DB + Realtime client</td></tr>
+      <tr><td><code>react-native-maps</code></td><td>Map view</td></tr>
+      <tr><td><code>expo-notifications</code></td><td>Push notification registration + handling</td></tr>
+      <tr><td><code>expo-camera</code></td><td>QR code scanner</td></tr>
+      <tr><td><code>react-native-qrcode-svg</code></td><td>QR code display</td></tr>
+      <tr><td><code>@gorhom/bottom-sheet</code></td><td>Bottom sheet component</td></tr>
+      <tr><td><code>expo-sharing</code></td><td>Native share sheet for friend links</td></tr>
+      <tr><td><code>expo-linking</code></td><td>Deep link handling for friend invites</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>
