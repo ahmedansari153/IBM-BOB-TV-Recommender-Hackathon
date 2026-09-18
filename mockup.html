@@ -400,6 +400,143 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
 
 /* ── Footer ──────────────────────────────────────────────── */
 .footer{text-align:center;font-size:12px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-top:16px}
+
+/* ── Onboarding Steps Extra ─────────────────────────────── */
+.ob-screen{display:none;flex:1;flex-direction:column;gap:16px;padding:24px 20px 16px;overflow-y:auto}
+.ob-screen.ob-active{display:flex}
+.ob-avatar-grid{display:flex;gap:10px;flex-wrap:wrap}
+.ob-avatar-option{width:72px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer}
+.ob-avatar-circle{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:2.5px solid transparent;transition:.2s}
+.ob-avatar-option.sel .ob-avatar-circle{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.2)}
+.ob-avatar-label{font-size:10px;color:#57606a;font-weight:600;text-align:center}
+.ob-input{width:100%;height:46px;border-radius:12px;border:1.5px solid #e5e7eb;padding:0 14px;font-size:14px;color:#1f2328;outline:none;font-family:inherit;transition:.2s}
+.ob-input:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.12)}
+.ob-platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ob-platform-btn{border-radius:14px;border:1.5px solid #e5e7eb;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:.15s;background:#fff}
+.ob-platform-btn.sel{background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(168,85,247,.08));border-color:#6366f1}
+.ob-platform-btn .plat-icon{font-size:22px}
+.ob-platform-btn .plat-name{font-size:10px;font-weight:700;color:#57606a}
+.ob-platform-btn.sel .plat-name{color:#6366f1}
+.ob-rating-row{display:flex;flex-direction:column;gap:10px}
+.ob-rating-item{display:flex;align-items:center;gap:10px;background:#f8f7fc;border-radius:12px;padding:10px 12px;cursor:pointer;transition:.15s}
+.ob-rating-item.sel{background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(168,85,247,.1));border:1px solid rgba(99,102,241,.2)}
+.ob-rating-dot{width:14px;height:14px;border-radius:50%;border:2px solid #e5e7eb;flex-shrink:0;transition:.2s}
+.ob-rating-item.sel .ob-rating-dot{background:#6366f1;border-color:#6366f1}
+.ob-rating-label{font-size:13px;font-weight:600;color:#1f2328}
+.ob-rating-sub{font-size:11px;color:#adb5bd;margin-left:auto}
+.ob-time-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.ob-time-btn{border-radius:14px;border:1.5px solid #e5e7eb;padding:12px;display:flex;flex-direction:column;gap:3px;cursor:pointer;background:#fff;transition:.15s}
+.ob-time-btn.sel{background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(168,85,247,.08));border-color:#6366f1}
+.ob-time-main{font-size:14px;font-weight:700;color:#1f2328}
+.ob-time-sub{font-size:10px;color:#adb5bd}
+.ob-time-btn.sel .ob-time-main{color:#6366f1}
+.ob-social-row{display:flex;gap:10px}
+.ob-social-btn{flex:1;height:44px;border-radius:12px;border:1.5px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;color:#1f2328;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.15s}
+.ob-social-btn:active{transform:scale(.96)}
+.ob-summary-row{display:flex;align-items:center;gap:12px;background:#f8f7fc;border-radius:12px;padding:10px 12px}
+.ob-summary-icon{font-size:20px;width:32px;text-align:center}
+.ob-summary-text{flex:1;font-size:13px;font-weight:600;color:#1f2328}
+.ob-summary-edit{font-size:11px;color:#6366f1;cursor:pointer;font-weight:600}
+
+/* ── Loading Screen ──────────────────────────────────────── */
+#screen-loading{background:linear-gradient(160deg,#0f0c29 0%,#302b63 50%,#24243e 100%)}
+.loading-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px}
+.loading-spinner{width:64px;height:64px;position:relative}
+.loading-spinner-track{width:64px;height:64px;border-radius:50%;border:3px solid rgba(255,255,255,.1);position:absolute}
+.loading-spinner-arc{width:64px;height:64px;border-radius:50%;border:3px solid transparent;border-top-color:#a855f7;border-right-color:#6366f1;position:absolute;animation:spinArc 1.1s linear infinite}
+@keyframes spinArc{to{transform:rotate(360deg)}}
+.loading-dots{display:flex;gap:6px;align-items:center}
+.loading-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;animation:loadDot 1.2s ease-in-out infinite}
+.loading-dot:nth-child(2){animation-delay:.2s}
+.loading-dot:nth-child(3){animation-delay:.4s}
+@keyframes loadDot{0%,80%,100%{transform:scale(0.5);opacity:.4}40%{transform:scale(1);opacity:1}}
+.loading-steps{display:flex;flex-direction:column;gap:8px;width:100%;max-width:260px}
+.loading-step{display:flex;align-items:center;gap:10px;opacity:.35;transition:opacity .4s ease}
+.loading-step.done{opacity:1}
+.loading-step.active{opacity:1}
+.loading-step-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;background:rgba(255,255,255,.1);flex-shrink:0;transition:.3s}
+.loading-step.done .loading-step-icon{background:#6366f1}
+.loading-step.active .loading-step-icon{background:rgba(99,102,241,.4);animation:stepPulse .8s ease-in-out infinite}
+@keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.5)}50%{box-shadow:0 0 0 5px rgba(99,102,241,0)}}
+.loading-step-text{font-size:12px;font-weight:600;color:rgba(255,255,255,.8)}
+
+/* ── RPS Waiting Screen ──────────────────────────────────── */
+#screen-rps-wait{background:#f0ece6}
+.wait-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:20px 32px}
+.wait-vs-row{display:flex;align-items:center;gap:16px;width:100%}
+.wait-player{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+.wait-av{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff}
+.wait-name{font-size:13px;font-weight:700;color:#1f2328}
+.wait-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
+.wait-badge.ready{background:#dcfce7;color:#166534}
+.wait-badge.waiting{background:#fef3c7;color:#92400e}
+.wait-divider{font-size:22px;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;flex-shrink:0}
+.wait-move-card{width:100%;background:#fff;border-radius:24px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.wait-move-bubble{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.wait-move-bubble svg{width:74px;height:74px;display:block;position:relative;z-index:1}
+.wait-move-bubble.filled{background:radial-gradient(circle at 35% 32%,#fffaf6 0%,#f5e6d8 45%,#e8c9b0 100%);box-shadow:0 8px 24px rgba(180,130,100,.28),inset 0 4px 8px rgba(255,255,255,.6)}
+.wait-move-bubble.filled::before{content:'';position:absolute;top:10px;left:16px;width:26px;height:17px;background:rgba(255,255,255,.5);border-radius:50%;filter:blur(3px);transform:rotate(-25deg);z-index:2;pointer-events:none}
+.wait-hidden-bubble{width:84px;height:84px;border-radius:50%;background:#f0ece6;border:2.5px dashed #c8c0b8;display:flex;align-items:center;justify-content:center;animation:waitPulse 2s ease-in-out infinite}
+@keyframes waitPulse{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.2);border-color:#c8c0b8}50%{box-shadow:0 0 0 8px rgba(99,102,241,0);border-color:#6366f1}}
+.wait-hidden-icon{font-size:28px;opacity:.35}
+.wait-label{font-size:13px;font-weight:700;color:#1f2328;text-align:center}
+.wait-sublabel{font-size:12px;color:#8a7f75;text-align:center}
+.wait-cancel-btn{width:100%;height:46px;border-radius:14px;border:1.5px solid #c8c0b8;background:transparent;font-size:14px;font-weight:700;color:#8a7f75;cursor:pointer;margin-top:8px}
+
+/* ── Home Carousel ───────────────────────────────────────── */
+.home-carousel{display:flex;gap:12px;overflow-x:auto;padding:0 20px 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.home-carousel::-webkit-scrollbar{display:none}
+.carousel-card{min-width:220px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);flex-shrink:0;cursor:pointer}
+.carousel-poster{width:100%;height:130px;position:relative;overflow:hidden}
+.carousel-poster-bg{position:absolute;inset:0}
+.carousel-poster-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%)}
+.carousel-poster-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;background:rgba(0,0,0,.4);color:#fff;backdrop-filter:blur(4px)}
+.carousel-poster-title{position:absolute;bottom:8px;left:10px;right:10px;font-size:13px;font-weight:800;color:#fff;line-height:1.2}
+.carousel-body{padding:10px 12px}
+.carousel-meta{font-size:10px;color:#adb5bd;margin-bottom:4px}
+.carousel-tags{display:flex;gap:4px;flex-wrap:wrap}
+.carousel-tag{font-size:9px;padding:2px 7px;background:#f0f0f5;border-radius:20px;color:#57606a;font-weight:500}
+.carousel-action-row{display:flex;gap:6px;margin-top:8px}
+.carousel-btn-seen{flex:1;height:30px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:10px;font-weight:600;color:#57606a;cursor:pointer}
+.carousel-btn-challenge{flex:1;height:30px;border-radius:8px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);font-size:10px;font-weight:700;color:#fff;cursor:pointer}
+.home-scroll-section{padding:12px 20px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.home-scroll-section-title{font-size:14px;font-weight:800;color:#1f2328}
+.home-scroll-section-link{font-size:12px;color:#6366f1;font-weight:600;cursor:pointer}
+
+/* ── Show Detail Bottom Sheet ────────────────────────────── */
+.bottom-sheet-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0);z-index:20;pointer-events:none;transition:background .3s ease}
+.bottom-sheet-backdrop.open{background:rgba(0,0,0,.45);pointer-events:all}
+.bottom-sheet{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:28px 28px 0 0;z-index:21;transform:translateY(100%);transition:transform .35s cubic-bezier(.32,0,.67,0);max-height:88%;display:flex;flex-direction:column}
+.bottom-sheet.open{transform:translateY(0);transition:transform .38s cubic-bezier(.34,1.12,.64,1)}
+.sheet-handle{width:36px;height:4px;background:#e5e7eb;border-radius:2px;margin:10px auto 0}
+.sheet-scroll{flex:1;overflow-y:auto;padding:16px 20px 32px}
+.sheet-poster{width:100%;height:180px;border-radius:16px;overflow:hidden;margin-bottom:14px;position:relative}
+.sheet-poster-bg{position:absolute;inset:0}
+.sheet-poster-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%)}
+.sheet-poster-title{position:absolute;bottom:12px;left:14px;font-size:22px;font-weight:800;color:#fff;line-height:1.1}
+.sheet-poster-meta{position:absolute;bottom:14px;right:14px;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.sheet-rating{display:flex;align-items:center;gap:3px;background:rgba(0,0,0,.5);border-radius:20px;padding:3px 8px}
+.sheet-rating-num{font-size:11px;font-weight:800;color:#fbbf24}
+.sheet-info-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.sheet-info-pill{padding:4px 10px;background:#f0f0f5;border-radius:20px;font-size:11px;color:#57606a;font-weight:500}
+.sheet-desc{font-size:13px;color:#57606a;line-height:1.65;margin-bottom:14px}
+.sheet-section-title{font-size:12px;font-weight:800;color:#1f2328;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.sheet-cast-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sheet-cast-row::-webkit-scrollbar{display:none}
+.sheet-cast-item{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:52px}
+.sheet-cast-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+.sheet-cast-name{font-size:9px;color:#57606a;font-weight:600;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52px}
+.sheet-where-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.sheet-platform-pill{border-radius:10px;padding:8px;background:#f8f7fc;display:flex;flex-direction:column;align-items:center;gap:3px}
+.sheet-platform-icon{font-size:18px}
+.sheet-platform-name{font-size:9px;font-weight:700;color:#57606a}
+.sheet-cta-row{display:flex;gap:8px;margin-top:4px}
+.sheet-btn-watchlist{flex:1;height:46px;border-radius:14px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-size:14px;font-weight:700;cursor:pointer}
+.sheet-btn-challenge{flex:1;height:46px;border-radius:14px;border:1.5px solid #6366f1;background:#fff;color:#6366f1;font-size:14px;font-weight:700;cursor:pointer}
+.sheet-match-bar{background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(168,85,247,.08));border:1px solid rgba(99,102,241,.2);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sheet-match-bar-pct{font-size:22px;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;flex-shrink:0}
+.sheet-match-bar-text{flex:1;font-size:12px;color:#57606a;line-height:1.4}
+.sheet-match-bar-icon{font-size:20px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -448,26 +585,28 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
       </div>
 
       <!-- ════════════════════════════════════════════════════
-           SCREEN 2: Onboarding
+           SCREEN 2: Onboarding (8-step wizard)
       ════════════════════════════════════════════════════ -->
       <div class="screen" id="screen-onboarding">
         <div class="status-bar light">
           <span class="status-time">9:41</span>
           <div class="status-icons">
-            <svg viewBox="0 0 24 24" fill="#1f2328" width="14" height="14"><path d="M1 6l5 5 5-5 5 5 5-5"/></svg>
+            <svg viewBox="0 0 24 24" fill="#1f2328" width="14" height="14"><rect x="2" y="7" width="20" height="10" rx="2"/></svg>
           </div>
         </div>
         <div class="ob-header">
           <div class="ob-progress"><div class="ob-progress-fill" id="ob-fill" style="width:12.5%"></div></div>
           <span class="ob-step-label" id="ob-step-label">1 of 8</span>
         </div>
-        <div class="ob-body">
-          <div style="margin-bottom:4px">
+
+        <!-- Step 1: Genres -->
+        <div class="ob-screen ob-active" id="ob-step-1">
+          <div>
             <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Set Up Your Taste</div>
-            <div class="ob-question" id="ob-question">What genres do you love?</div>
-            <div class="ob-hint" id="ob-hint">Pick all that apply — we'll use this to find your perfect match</div>
+            <div class="ob-question">What genres do you love?</div>
+            <div class="ob-hint" style="margin-top:4px">Pick all that apply — we'll use this to find your perfect match</div>
           </div>
-          <div class="ob-chips" id="ob-chips">
+          <div class="ob-chips">
             <div class="chip" onclick="toggleChip(this)">Drama</div>
             <div class="chip sel" onclick="toggleChip(this)">Comedy</div>
             <div class="chip" onclick="toggleChip(this)">Thriller</div>
@@ -480,16 +619,209 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
             <div class="chip" onclick="toggleChip(this)">Romance</div>
           </div>
         </div>
+
+        <!-- Step 2: Streaming platforms -->
+        <div class="ob-screen" id="ob-step-2">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Your Subscriptions</div>
+            <div class="ob-question">Which platforms do you have?</div>
+            <div class="ob-hint" style="margin-top:4px">We'll only suggest shows you can actually watch</div>
+          </div>
+          <div class="ob-platform-grid">
+            <div class="ob-platform-btn sel" onclick="this.classList.toggle('sel')"><div class="plat-icon">📺</div><div class="plat-name">Netflix</div></div>
+            <div class="ob-platform-btn sel" onclick="this.classList.toggle('sel')"><div class="plat-icon">🍎</div><div class="plat-name">Apple TV+</div></div>
+            <div class="ob-platform-btn" onclick="this.classList.toggle('sel')"><div class="plat-icon">🎬</div><div class="plat-name">Prime</div></div>
+            <div class="ob-platform-btn" onclick="this.classList.toggle('sel')"><div class="plat-icon">✨</div><div class="plat-name">Disney+</div></div>
+            <div class="ob-platform-btn sel" onclick="this.classList.toggle('sel')"><div class="plat-icon">🎭</div><div class="plat-name">HBO Max</div></div>
+            <div class="ob-platform-btn" onclick="this.classList.toggle('sel')"><div class="plat-icon">🦚</div><div class="plat-name">Peacock</div></div>
+          </div>
+        </div>
+
+        <!-- Step 3: Watching mood -->
+        <div class="ob-screen" id="ob-step-3">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Your Vibe</div>
+            <div class="ob-question">How do you usually watch?</div>
+            <div class="ob-hint" style="margin-top:4px">This shapes how intense our picks will be</div>
+          </div>
+          <div class="ob-rating-row">
+            <div class="ob-rating-item sel" onclick="selectRatingItem(this)">
+              <div class="ob-rating-dot"></div>
+              <div class="ob-rating-label">🛋️ Chill &amp; relax</div>
+              <div class="ob-rating-sub">Easy watch</div>
+            </div>
+            <div class="ob-rating-item" onclick="selectRatingItem(this)">
+              <div class="ob-rating-dot"></div>
+              <div class="ob-rating-label">🤩 Edge of seat</div>
+              <div class="ob-rating-sub">Thrilling</div>
+            </div>
+            <div class="ob-rating-item" onclick="selectRatingItem(this)">
+              <div class="ob-rating-dot"></div>
+              <div class="ob-rating-label">😂 Laugh out loud</div>
+              <div class="ob-rating-sub">Comedy focus</div>
+            </div>
+            <div class="ob-rating-item" onclick="selectRatingItem(this)">
+              <div class="ob-rating-dot"></div>
+              <div class="ob-rating-label">🧠 Mind-bending</div>
+              <div class="ob-rating-sub">Complex plots</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Episode length -->
+        <div class="ob-screen" id="ob-step-4">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Time Budget</div>
+            <div class="ob-question">How long are your watch sessions?</div>
+            <div class="ob-hint" style="margin-top:4px">We'll match episode runtimes to your schedule</div>
+          </div>
+          <div class="ob-time-grid">
+            <div class="ob-time-btn" onclick="selectTimeBtn(this)">
+              <div class="ob-time-main">20–30 min</div>
+              <div class="ob-time-sub">Short episodes</div>
+            </div>
+            <div class="ob-time-btn sel" onclick="selectTimeBtn(this)">
+              <div class="ob-time-main">45–60 min</div>
+              <div class="ob-time-sub">Standard drama</div>
+            </div>
+            <div class="ob-time-btn" onclick="selectTimeBtn(this)">
+              <div class="ob-time-main">60–90 min</div>
+              <div class="ob-time-sub">Long-form</div>
+            </div>
+            <div class="ob-time-btn" onclick="selectTimeBtn(this)">
+              <div class="ob-time-main">No limit</div>
+              <div class="ob-time-sub">Binge mode 🍕</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Languages / regions -->
+        <div class="ob-screen" id="ob-step-5">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Language</div>
+            <div class="ob-question">Any language preferences?</div>
+            <div class="ob-hint" style="margin-top:4px">Select all you're comfortable watching</div>
+          </div>
+          <div class="ob-chips">
+            <div class="chip sel" onclick="toggleChip(this)">🇺🇸 English</div>
+            <div class="chip" onclick="toggleChip(this)">🇰🇷 Korean</div>
+            <div class="chip" onclick="toggleChip(this)">🇪🇸 Spanish</div>
+            <div class="chip sel" onclick="toggleChip(this)">🇯🇵 Japanese</div>
+            <div class="chip" onclick="toggleChip(this)">🇫🇷 French</div>
+            <div class="chip" onclick="toggleChip(this)">🇧🇷 Portuguese</div>
+            <div class="chip" onclick="toggleChip(this)">🇩🇪 German</div>
+            <div class="chip" onclick="toggleChip(this)">🌍 Any language</div>
+          </div>
+        </div>
+
+        <!-- Step 6: Who you watch with -->
+        <div class="ob-screen" id="ob-step-6">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Watch Group</div>
+            <div class="ob-question">Who do you usually watch with?</div>
+            <div class="ob-hint" style="margin-top:4px">We'll fine-tune suggestions for your group</div>
+          </div>
+          <div class="ob-avatar-grid">
+            <div class="ob-avatar-option sel" onclick="this.classList.toggle('sel')">
+              <div class="ob-avatar-circle" style="background:linear-gradient(135deg,#6366f1,#a855f7)">👤</div>
+              <div class="ob-avatar-label">Solo</div>
+            </div>
+            <div class="ob-avatar-option" onclick="this.classList.toggle('sel')">
+              <div class="ob-avatar-circle" style="background:linear-gradient(135deg,#ec4899,#f97316)">💑</div>
+              <div class="ob-avatar-label">Partner</div>
+            </div>
+            <div class="ob-avatar-option" onclick="this.classList.toggle('sel')">
+              <div class="ob-avatar-circle" style="background:linear-gradient(135deg,#14b8a6,#0ea5e9)">👨‍👩‍👧</div>
+              <div class="ob-avatar-label">Family</div>
+            </div>
+            <div class="ob-avatar-option" onclick="this.classList.toggle('sel')">
+              <div class="ob-avatar-circle" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">👯</div>
+              <div class="ob-avatar-label">Friends</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 7: Connect friends -->
+        <div class="ob-screen" id="ob-step-7">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Find Friends</div>
+            <div class="ob-question">Connect with your people</div>
+            <div class="ob-hint" style="margin-top:4px">Challenge them, nudge them, see what they're watching</div>
+          </div>
+          <div class="ob-social-row">
+            <button class="ob-social-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#1f2328" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="#1f2328" stroke-width="2" fill="none"/></svg>
+              From Contacts
+            </button>
+            <button class="ob-social-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#1f2328" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="#1f2328" stroke-width="2" stroke-linecap="round"/></svg>
+              Share My Link
+            </button>
+          </div>
+          <div style="background:#f8f7fc;border-radius:14px;padding:14px 16px">
+            <div style="font-size:12px;font-weight:700;color:#1f2328;margin-bottom:10px">Suggested friends nearby</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f97316);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">J</div>
+                <div style="flex:1"><div style="font-size:13px;font-weight:600;color:#1f2328">Jamie Chen</div><div style="font-size:11px;color:#adb5bd">2 mutual friends</div></div>
+                <button style="height:28px;padding:0 12px;border-radius:8px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-size:11px;font-weight:700;cursor:pointer">+ Add</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#14b8a6,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff">S</div>
+                <div style="flex:1"><div style="font-size:13px;font-weight:600;color:#1f2328">Sam Okafor</div><div style="font-size:11px;color:#adb5bd">Same ZIP code</div></div>
+                <button style="height:28px;padding:0 12px;border-radius:8px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-size:11px;font-weight:700;cursor:pointer">+ Add</button>
+              </div>
+            </div>
+          </div>
+          <button style="background:none;border:none;color:#adb5bd;font-size:13px;cursor:pointer;text-align:center;width:100%">Skip for now →</button>
+        </div>
+
+        <!-- Step 8: Summary / confirm -->
+        <div class="ob-screen" id="ob-step-8">
+          <div>
+            <div style="font-size:11px;color:#6366f1;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">Almost There!</div>
+            <div class="ob-question">Your taste profile ✨</div>
+            <div class="ob-hint" style="margin-top:4px">Here's what we'll use to personalise your picks</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="ob-summary-row">
+              <div class="ob-summary-icon">🎭</div>
+              <div class="ob-summary-text">Comedy, Sci-Fi, Animation</div>
+              <div class="ob-summary-edit" onclick="obGoTo(1)">Edit</div>
+            </div>
+            <div class="ob-summary-row">
+              <div class="ob-summary-icon">📺</div>
+              <div class="ob-summary-text">Netflix, Apple TV+, HBO Max</div>
+              <div class="ob-summary-edit" onclick="obGoTo(2)">Edit</div>
+            </div>
+            <div class="ob-summary-row">
+              <div class="ob-summary-icon">🛋️</div>
+              <div class="ob-summary-text">Chill &amp; relax · 45–60 min</div>
+              <div class="ob-summary-edit" onclick="obGoTo(3)">Edit</div>
+            </div>
+            <div class="ob-summary-row">
+              <div class="ob-summary-icon">🇺🇸</div>
+              <div class="ob-summary-text">English, Japanese</div>
+              <div class="ob-summary-edit" onclick="obGoTo(5)">Edit</div>
+            </div>
+            <div class="ob-summary-row">
+              <div class="ob-summary-icon">👤</div>
+              <div class="ob-summary-text">Solo &amp; with friends</div>
+              <div class="ob-summary-edit" onclick="obGoTo(6)">Edit</div>
+            </div>
+          </div>
+        </div>
+
         <div class="ob-footer">
-          <button class="btn-back" onclick="showScreen('screen-splash')">
+          <button class="btn-back" id="ob-back-btn" onclick="obBack()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f2328" stroke-width="2.5" stroke-linecap="round"><polyline points="15,18 9,12 15,6"/></svg>
           </button>
-          <button class="btn-next" onclick="showScreen('screen-home')">Continue →</button>
+          <button class="btn-next" id="ob-next-btn" onclick="obNext()">Continue →</button>
         </div>
       </div>
 
       <!-- ════════════════════════════════════════════════════
-           SCREEN 3: Home
+           SCREEN 3: Home (with carousel + bottom sheet)
       ════════════════════════════════════════════════════ -->
       <div class="screen" id="screen-home">
         <div class="status-bar light">
@@ -503,7 +835,8 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
           <div class="home-title">Today's Pick</div>
         </div>
         <div class="home-scroll">
-          <div class="rec-card">
+          <!-- Hero rec card — tap to open detail sheet -->
+          <div class="rec-card" onclick="openSheet('severance')" style="cursor:pointer">
             <div class="rec-poster">
               <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 40%,#7c3aed 100%)"></div>
               <div class="rec-poster-overlay"></div>
@@ -523,13 +856,14 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
                 <span class="rec-tag">~60 min</span>
               </div>
               <div class="rec-actions">
-                <button class="btn-seen">✓ Mark Seen</button>
-                <button class="btn-challenge" onclick="showScreen('screen-rps-choose')">⚡ Challenge</button>
+                <button class="btn-seen" onclick="event.stopPropagation()">✓ Mark Seen</button>
+                <button class="btn-challenge" onclick="event.stopPropagation();showScreen('screen-rps-choose')">⚡ Challenge</button>
               </div>
             </div>
           </div>
           <div class="countdown-label">Next pick in · 18h 22m</div>
 
+          <!-- Watch Together widget -->
           <div class="session-card">
             <div class="session-card-title">🍿 Watch Together <span>Now</span></div>
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -544,7 +878,164 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
             <button class="btn-start-session" onclick="showScreen('screen-rps-home')">Start Group Session →</button>
           </div>
         </div>
+
+        <!-- "Also liked by friends" horizontal carousel -->
+        <div class="home-scroll-section">
+          <div class="home-scroll-section-title">Friends are watching</div>
+          <div class="home-scroll-section-link">See all</div>
+        </div>
+        <div class="home-carousel">
+          <div class="carousel-card" onclick="openSheet('bear')">
+            <div class="carousel-poster">
+              <div class="carousel-poster-bg" style="background:linear-gradient(135deg,#ec4899,#f97316)"></div>
+              <div class="carousel-poster-overlay"></div>
+              <div class="carousel-poster-badge">🔥 Trending</div>
+              <div class="carousel-poster-title">The Bear</div>
+            </div>
+            <div class="carousel-body">
+              <div class="carousel-meta">FX on Hulu · 2022 · Comedy/Drama</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Drama</span>
+                <span class="carousel-tag">~30 min</span>
+              </div>
+              <div class="carousel-action-row">
+                <button class="carousel-btn-seen" onclick="event.stopPropagation()">✓ Seen</button>
+                <button class="carousel-btn-challenge" onclick="event.stopPropagation();showScreen('screen-rps-choose')">⚡</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-card" onclick="openSheet('slowhorses')">
+            <div class="carousel-poster">
+              <div class="carousel-poster-bg" style="background:linear-gradient(135deg,#14b8a6,#0ea5e9)"></div>
+              <div class="carousel-poster-overlay"></div>
+              <div class="carousel-poster-badge">🕵️ Spy Thriller</div>
+              <div class="carousel-poster-title">Slow Horses</div>
+            </div>
+            <div class="carousel-body">
+              <div class="carousel-meta">Apple TV+ · 2022 · Thriller</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Spy</span>
+                <span class="carousel-tag">~60 min</span>
+              </div>
+              <div class="carousel-action-row">
+                <button class="carousel-btn-seen" onclick="event.stopPropagation()">✓ Seen</button>
+                <button class="carousel-btn-challenge" onclick="event.stopPropagation();showScreen('screen-rps-choose')">⚡</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-card" onclick="openSheet('succession')">
+            <div class="carousel-poster">
+              <div class="carousel-poster-bg" style="background:linear-gradient(135deg,#5eead4,#14b8a6 55%,#0f766e)"></div>
+              <div class="carousel-poster-overlay"></div>
+              <div class="carousel-poster-badge">👑 Classic</div>
+              <div class="carousel-poster-title">Succession</div>
+            </div>
+            <div class="carousel-body">
+              <div class="carousel-meta">HBO · 2018 · Drama</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Drama</span>
+                <span class="carousel-tag">~60 min</span>
+              </div>
+              <div class="carousel-action-row">
+                <button class="carousel-btn-seen" onclick="event.stopPropagation()">✓ Seen</button>
+                <button class="carousel-btn-challenge" onclick="event.stopPropagation();showScreen('screen-rps-choose')">⚡</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-card" onclick="openSheet('abbott')">
+            <div class="carousel-poster">
+              <div class="carousel-poster-bg" style="background:linear-gradient(135deg,#fcd34d,#f59e0b 55%,#b45309)"></div>
+              <div class="carousel-poster-overlay"></div>
+              <div class="carousel-poster-badge">😂 Comedy</div>
+              <div class="carousel-poster-title">Abbott Elementary</div>
+            </div>
+            <div class="carousel-body">
+              <div class="carousel-meta">ABC · 2021 · Mockumentary</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Comedy</span>
+                <span class="carousel-tag">~25 min</span>
+              </div>
+              <div class="carousel-action-row">
+                <button class="carousel-btn-seen" onclick="event.stopPropagation()">✓ Seen</button>
+                <button class="carousel-btn-challenge" onclick="event.stopPropagation();showScreen('screen-rps-choose')">⚡</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height:12px"></div>
+
         <div class="tab-bar" id="tabbar-home"></div>
+
+        <!-- Bottom Sheet Backdrop -->
+        <div class="bottom-sheet-backdrop" id="sheet-backdrop" onclick="closeSheet()"></div>
+
+        <!-- Show Detail Bottom Sheet -->
+        <div class="bottom-sheet" id="show-detail-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-scroll">
+            <!-- Poster -->
+            <div class="sheet-poster">
+              <div class="sheet-poster-bg" id="sheet-poster-bg" style="background:linear-gradient(135deg,#1e1b4b,#4f46e5)"></div>
+              <div class="sheet-poster-overlay"></div>
+              <div class="sheet-poster-title" id="sheet-title">Severance</div>
+              <div class="sheet-poster-meta">
+                <div class="sheet-rating"><span style="font-size:11px">⭐</span><span class="sheet-rating-num" id="sheet-rating">8.7</span></div>
+              </div>
+            </div>
+            <!-- Match score -->
+            <div class="sheet-match-bar">
+              <div class="sheet-match-bar-pct" id="sheet-match-pct">94%</div>
+              <div class="sheet-match-bar-text" id="sheet-match-text">Great match for you and Jamie based on your shared love of Sci-Fi &amp; slow-burn thrillers.</div>
+              <div class="sheet-match-bar-icon">🎯</div>
+            </div>
+            <!-- Info pills -->
+            <div class="sheet-info-row" id="sheet-info-row">
+              <span class="sheet-info-pill">Apple TV+</span>
+              <span class="sheet-info-pill">2022</span>
+              <span class="sheet-info-pill">Thriller</span>
+              <span class="sheet-info-pill">~60 min</span>
+              <span class="sheet-info-pill">2 Seasons</span>
+            </div>
+            <!-- Description -->
+            <div class="sheet-desc" id="sheet-desc">Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives in a chilling, darkly funny slow-burn mystery that'll keep you guessing.</div>
+            <!-- Cast -->
+            <div class="sheet-section-title">Cast</div>
+            <div class="sheet-cast-row" id="sheet-cast-row">
+              <div class="sheet-cast-item">
+                <div class="sheet-cast-av" style="background:linear-gradient(135deg,#6366f1,#a855f7)">A</div>
+                <div class="sheet-cast-name">Adam Scott</div>
+              </div>
+              <div class="sheet-cast-item">
+                <div class="sheet-cast-av" style="background:linear-gradient(135deg,#ec4899,#f97316)">P</div>
+                <div class="sheet-cast-name">Patricia A.</div>
+              </div>
+              <div class="sheet-cast-item">
+                <div class="sheet-cast-av" style="background:linear-gradient(135deg,#14b8a6,#0ea5e9)">Z</div>
+                <div class="sheet-cast-name">Zach Cherry</div>
+              </div>
+              <div class="sheet-cast-item">
+                <div class="sheet-cast-av" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">B</div>
+                <div class="sheet-cast-name">Britt Lower</div>
+              </div>
+              <div class="sheet-cast-item">
+                <div class="sheet-cast-av" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">J</div>
+                <div class="sheet-cast-name">John Turturro</div>
+              </div>
+            </div>
+            <!-- Where to watch -->
+            <div class="sheet-section-title" style="margin-top:14px">Where to Watch</div>
+            <div class="sheet-where-grid" id="sheet-where-grid">
+              <div class="sheet-platform-pill"><div class="sheet-platform-icon">🍎</div><div class="sheet-platform-name">Apple TV+</div></div>
+              <div class="sheet-platform-pill" style="opacity:.3"><div class="sheet-platform-icon">📺</div><div class="sheet-platform-name">Not on Netflix</div></div>
+              <div class="sheet-platform-pill" style="opacity:.3"><div class="sheet-platform-icon">🎭</div><div class="sheet-platform-name">Not on HBO</div></div>
+            </div>
+            <!-- CTAs -->
+            <div class="sheet-cta-row">
+              <button class="sheet-btn-watchlist">+ Watchlist 🍿</button>
+              <button class="sheet-btn-challenge" onclick="closeSheet();showScreen('screen-rps-choose')">⚡ Challenge</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- ════════════════════════════════════════════════════
@@ -1063,6 +1554,120 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
         </div>
       </div>
 
+      <!-- ════════════════════════════════════════════════════
+           SCREEN 10: Taste Profile Loading
+      ════════════════════════════════════════════════════ -->
+      <div class="screen" id="screen-loading">
+        <div class="status-bar dark"><span class="status-time">9:41</span></div>
+        <div class="loading-inner">
+          <div style="text-align:center">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zm-5-6.5l-7 4V6.5l7 4z"/></svg>
+            </div>
+            <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Building your profile</div>
+            <div style="font-size:14px;color:rgba(255,255,255,.5);margin-bottom:24px">Personalising your experience…</div>
+          </div>
+
+          <div class="loading-spinner">
+            <div class="loading-spinner-track"></div>
+            <div class="loading-spinner-arc"></div>
+          </div>
+
+          <div class="loading-steps" id="loading-steps">
+            <div class="loading-step done" id="lstep-1">
+              <div class="loading-step-icon">✓</div>
+              <div class="loading-step-text">Analysing your genre preferences</div>
+            </div>
+            <div class="loading-step done" id="lstep-2">
+              <div class="loading-step-icon">✓</div>
+              <div class="loading-step-text">Filtering by your platforms</div>
+            </div>
+            <div class="loading-step active" id="lstep-3">
+              <div class="loading-step-icon">⬤</div>
+              <div class="loading-step-text">Running AI taste matching</div>
+            </div>
+            <div class="loading-step" id="lstep-4">
+              <div class="loading-step-icon">○</div>
+              <div class="loading-step-text">Curating today's picks</div>
+            </div>
+          </div>
+
+          <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════════════════════════
+           SCREEN 11: RPS Waiting (waiting for partner to pick)
+      ════════════════════════════════════════════════════ -->
+      <div class="screen" id="screen-rps-wait">
+        <div class="status-bar" style="background:#f0ece6;color:#1f2328"><span class="status-time">9:41</span></div>
+        <div class="screen-header-bar" style="background:#f0ece6;border-bottom:1px solid #e0d8d0">
+          <button style="background:none;border:none;cursor:pointer;font-size:22px;padding:0;color:#1f2328" onclick="showScreen('screen-rps-home')">←</button>
+          <h2 style="font-size:16px;color:#1f2328">Rock · Paper · Scissors</h2>
+          <div style="width:28px"></div>
+        </div>
+        <div class="wait-body">
+          <!-- Players row -->
+          <div class="wait-vs-row">
+            <div class="wait-player">
+              <div class="wait-av" style="background:linear-gradient(135deg,#6366f1,#a855f7)">A</div>
+              <div class="wait-name">You</div>
+              <div class="wait-badge ready">✓ Ready</div>
+            </div>
+            <div class="wait-divider">VS</div>
+            <div class="wait-player">
+              <div class="wait-av" style="background:linear-gradient(135deg,#14b8a6,#0ea5e9)">S</div>
+              <div class="wait-name">Sam</div>
+              <div class="wait-badge waiting" id="wait-opp-badge">⏳ Thinking…</div>
+            </div>
+          </div>
+
+          <!-- Move reveal card -->
+          <div class="wait-move-card">
+            <div style="display:flex;gap:28px;align-items:flex-end">
+              <!-- Your locked-in move (revealed) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                <div class="wait-move-bubble filled" id="wait-your-bubble">
+                  <!-- SVG will be injected by JS -->
+                </div>
+                <div style="font-size:11px;font-weight:700;color:#8a7f75">Your move</div>
+                <div style="font-size:13px;font-weight:700;color:#1f2328" id="wait-your-move-label">Rock</div>
+              </div>
+              <!-- Opponent hidden move (animated dashes) -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+                <div class="wait-hidden-bubble">
+                  <div class="wait-hidden-icon">?</div>
+                </div>
+                <div style="font-size:11px;font-weight:700;color:#8a7f75">Sam's move</div>
+                <div style="font-size:13px;font-weight:700;color:#adb5bd">Hidden</div>
+              </div>
+            </div>
+            <div class="wait-label">Locked in! Waiting for Sam to pick…</div>
+            <div class="wait-sublabel" id="wait-timer-label">Usually takes &lt; 30 seconds</div>
+          </div>
+
+          <!-- Show being decided -->
+          <div style="width:100%;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 2px 12px rgba(0,0,0,.06)">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#adb5bd;margin-bottom:8px">Tonight's contenders</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;border-radius:10px;height:52px;background:linear-gradient(135deg,#1e1b4b,#4f46e5);position:relative;overflow:hidden">
+                <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 7px;background:rgba(0,0,0,.5);font-size:10px;font-weight:700;color:#fff">Severance</div>
+              </div>
+              <div style="font-size:11px;font-weight:800;color:#6366f1">VS</div>
+              <div style="flex:1;border-radius:10px;height:52px;background:linear-gradient(135deg,#14b8a6,#0ea5e9);position:relative;overflow:hidden">
+                <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 7px;background:rgba(0,0,0,.5);font-size:10px;font-weight:700;color:#fff">Slow Horses</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="wait-cancel-btn" onclick="showScreen('screen-rps-choose')">← Change my move</button>
+        </div>
+      </div>
+
     </div><!-- /phone-screen -->
     <!-- no tab bar on settings screen — it has a back button instead -->
   </div><!-- /phone-wrap -->
@@ -1076,10 +1681,12 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
       <button class="nav-btn" id="nav-screen-home" onclick="showScreen('screen-home')">3 · Home</button>
       <button class="nav-btn" id="nav-screen-rps-home" onclick="showScreen('screen-rps-home')">4 · Challenges</button>
       <button class="nav-btn" id="nav-screen-rps-choose" onclick="showScreen('screen-rps-choose')">5 · RPS Choose</button>
+      <button class="nav-btn" id="nav-screen-rps-wait" onclick="showScreen('screen-rps-wait')">5b · RPS Waiting</button>
       <button class="nav-btn" id="nav-screen-rps-result" onclick="showScreen('screen-rps-result')">6 · RPS Result</button>
       <button class="nav-btn" id="nav-screen-friends" onclick="showScreen('screen-friends')">7 · Friends</button>
       <button class="nav-btn" id="nav-screen-map" onclick="showScreen('screen-map')">8 · Map</button>
       <button class="nav-btn" id="nav-screen-settings" onclick="showScreen('screen-settings')">9 · Settings</button>
+      <button class="nav-btn" id="nav-screen-loading" onclick="showScreen('screen-loading')">10 · Loading</button>
     </div>
   </div>
 
@@ -1150,17 +1757,136 @@ function _baseShowScreen(id) {
   if (nb) nb.classList.add('active-nav');
 }
 
-function toggleChip(el) {
-  el.classList.toggle('sel');
+function toggleChip(el) { el.classList.toggle('sel'); }
+function selectRatingItem(el) {
+  el.closest('.ob-rating-row').querySelectorAll('.ob-rating-item').forEach(i => i.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function selectTimeBtn(el) {
+  el.closest('.ob-time-grid').querySelectorAll('.ob-time-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+// ── Onboarding wizard ────────────────────────────────────────
+let _obStep = 1;
+const OB_TOTAL = 8;
+
+function obRender() {
+  document.querySelectorAll('.ob-screen').forEach(s => s.classList.remove('ob-active'));
+  const active = document.getElementById('ob-step-' + _obStep);
+  if (active) active.classList.add('ob-active');
+  const pct = (_obStep / OB_TOTAL * 100).toFixed(1) + '%';
+  document.getElementById('ob-fill').style.width = pct;
+  document.getElementById('ob-step-label').textContent = _obStep + ' of ' + OB_TOTAL;
+  const backBtn = document.getElementById('ob-back-btn');
+  if (backBtn) backBtn.style.visibility = _obStep === 1 ? 'hidden' : 'visible';
+  const nextBtn = document.getElementById('ob-next-btn');
+  if (nextBtn) nextBtn.textContent = _obStep === OB_TOTAL ? 'Build My Profile ✨' : 'Continue →';
+}
+
+function obNext() {
+  if (_obStep < OB_TOTAL) {
+    _obStep++;
+    obRender();
+  } else {
+    // Done — go to loading screen, then auto-advance to home
+    showScreen('screen-loading');
+    startLoadingSequence();
+  }
+}
+
+function obBack() {
+  if (_obStep > 1) { _obStep--; obRender(); }
+  else showScreen('screen-splash');
+}
+
+function obGoTo(step) {
+  _obStep = step;
+  obRender();
+  showScreen('screen-onboarding');
+}
+
+// Initial render
+obRender();
+
+// ── Loading screen sequence ──────────────────────────────────
+let _loadingTimeout = null;
+
+function startLoadingSequence() {
+  const steps = [
+    { id:'lstep-1', delay:0    },
+    { id:'lstep-2', delay:700  },
+    { id:'lstep-3', delay:1400 },
+    { id:'lstep-4', delay:2200 },
+  ];
+  // Reset all to pending
+  steps.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (el) { el.classList.remove('done','active'); }
+  });
+  // Animate through steps
+  steps.forEach((s, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(s.id);
+      if (!el) return;
+      if (i > 0) {
+        const prev = document.getElementById(steps[i-1].id);
+        if (prev) { prev.classList.remove('active'); prev.classList.add('done'); prev.querySelector('.loading-step-icon').textContent = '✓'; }
+      }
+      el.classList.add('active');
+      el.querySelector('.loading-step-icon').textContent = '⬤';
+    }, s.delay);
+  });
+  // Finish: mark last done + navigate to home
+  _loadingTimeout = setTimeout(() => {
+    const last = document.getElementById('lstep-4');
+    if (last) { last.classList.remove('active'); last.classList.add('done'); last.querySelector('.loading-step-icon').textContent = '✓'; }
+    setTimeout(() => showScreen('screen-home'), 500);
+  }, 3200);
+}
+
+// ── Show Detail bottom sheet data ────────────────────────────
+const SHOW_DATA = {
+  severance:  { title:'Severance',          bg:'linear-gradient(135deg,#1e1b4b,#4f46e5)', rating:'8.7', match:'94%', matchText:'Great match for you and Jamie — shared love of Sci-Fi &amp; slow-burn thrillers.', info:['Apple TV+','2022','Thriller','~60 min','2 Seasons'], desc:"Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives in a chilling, darkly funny slow-burn mystery that'll keep you guessing.", cast:[{l:'A',c:'#6366f1',n:'Adam Scott'},{l:'P',c:'#ec4899',n:'Patricia A.'},{l:'Z',c:'#14b8a6',n:'Zach Cherry'},{l:'B',c:'#f59e0b',n:'Britt Lower'},{l:'J',c:'#8b5cf6',n:'John T.'}], platforms:[{i:'🍎',n:'Apple TV+'},{i:'📺',n:'Not on Netflix',dim:true},{i:'🎭',n:'Not on HBO',dim:true}] },
+  bear:       { title:'The Bear',            bg:'linear-gradient(135deg,#ec4899,#f97316)', rating:'8.6', match:'88%', matchText:'Your comedy-drama taste aligns perfectly — Jamie is also watching this right now.',         info:['Hulu','2022','Drama','~30 min','3 Seasons'], desc:'Carmy, a young fine-dining chef, returns home to run his family\'s sandwich shop in Chicago — a chaotic, intense kitchen drama that\'s as funny as it is stressful.', cast:[{l:'J',c:'#ec4899',n:'Jeremy A.'},{l:'E',c:'#f97316',n:'Ebon M.'},{l:'A',c:'#6366f1',n:'Ayo E.'},{l:'L',c:'#14b8a6',n:'Lionel B.'},{l:'O',c:'#f59e0b',n:'Oliver P.'}], platforms:[{i:'🎬',n:'Hulu'},{i:'📺',n:'Not on Netflix',dim:true},{i:'✨',n:'Not Disney+',dim:true}] },
+  slowhorses: { title:'Slow Horses',         bg:'linear-gradient(135deg,#14b8a6,#0ea5e9)', rating:'8.1', match:'81%', matchText:'Sam\'s current watch — a spy thriller with great writing and Gary Oldman at his best.',       info:['Apple TV+','2022','Spy','~60 min','4 Seasons'], desc:'MI5 agents who\'ve been demoted to Slough House — the dumping ground for misfits — suddenly find themselves in the middle of a very real and dangerous conspiracy.', cast:[{l:'G',c:'#14b8a6',n:'Gary Oldman'},{l:'K',c:'#0ea5e9',n:'Kristin S.'},{l:'J',c:'#6366f1',n:'Jack L.'},{l:'S',c:'#ec4899',n:'Saskia R.'},{l:'F',c:'#f59e0b',n:'Freddie F.'}], platforms:[{i:'🍎',n:'Apple TV+'},{i:'📺',n:'Not on Netflix',dim:true},{i:'🎭',n:'Not on HBO',dim:true}] },
+  succession: { title:'Succession',          bg:'linear-gradient(135deg,#5eead4,#0f766e)', rating:'8.9', match:'91%', matchText:'A classic — Morgan finished it last week and gave it 5 stars. Your drama taste is a perfect fit.', info:['HBO Max','2018','Drama','~60 min','4 Seasons'], desc:'The Roy family controls one of the biggest media and entertainment conglomerates in the world. But who will inherit it? Power, betrayal, and savage wit in equal measure.', cast:[{l:'B',c:'#5eead4',n:'Brian Cox'},{l:'K',c:'#0f766e',n:'Kieran C.'},{l:'S',c:'#6366f1',n:'Sarah S.'},{l:'J',c:'#f59e0b',n:'Jeremy S.'},{l:'M',c:'#ec4899',n:'Matthew M.'}], platforms:[{i:'🎭',n:'HBO Max'},{i:'📺',n:'Not on Netflix',dim:true},{i:'🍎',n:'Not Apple TV',dim:true}] },
+  abbott:     { title:'Abbott Elementary',   bg:'linear-gradient(135deg,#fcd34d,#b45309)',  rating:'8.2', match:'79%', matchText:'Highest-rated comedy pick this week in your friend group — easy 25-min episodes.',            info:['ABC/Hulu','2021','Comedy','~25 min','4 Seasons'], desc:'An ensemble of dedicated teachers navigate the underfunded Philadelphia public school system, each bringing their own quirky personality to the chaotic but loving workplace.', cast:[{l:'Q',c:'#fcd34d',n:'Quinta B.'},{l:'T',c:'#f59e0b',n:'Tyler J.'},{l:'J',c:'#b45309',n:'Janelle J.'},{l:'L',c:'#6366f1',n:'Lisa A.'},{l:'W',c:'#ec4899',n:'William S.'}], platforms:[{i:'🎬',n:'Hulu'},{i:'📺',n:'Not on Netflix',dim:true},{i:'🍎',n:'Not Apple TV',dim:true}] },
+};
+
+function openSheet(showKey) {
+  const data = SHOW_DATA[showKey];
+  if (!data) return;
+  document.getElementById('sheet-poster-bg').style.background = data.bg;
+  document.getElementById('sheet-title').textContent = data.title;
+  document.getElementById('sheet-rating').textContent = data.rating;
+  document.getElementById('sheet-match-pct').textContent = data.match;
+  document.getElementById('sheet-match-text').innerHTML = data.matchText;
+  document.getElementById('sheet-desc').textContent = data.desc;
+  const infoRow = document.getElementById('sheet-info-row');
+  infoRow.innerHTML = data.info.map(p => `<span class="sheet-info-pill">${p}</span>`).join('');
+  const castRow = document.getElementById('sheet-cast-row');
+  castRow.innerHTML = data.cast.map(c => `<div class="sheet-cast-item"><div class="sheet-cast-av" style="background:${c.c}">${c.l}</div><div class="sheet-cast-name">${c.n}</div></div>`).join('');
+  const whereGrid = document.getElementById('sheet-where-grid');
+  whereGrid.innerHTML = data.platforms.map(p => `<div class="sheet-platform-pill"${p.dim?' style="opacity:.3"':''}><div class="sheet-platform-icon">${p.i}</div><div class="sheet-platform-name">${p.n}</div></div>`).join('');
+  document.getElementById('sheet-backdrop').classList.add('open');
+  document.getElementById('show-detail-sheet').classList.add('open');
+}
+
+function closeSheet() {
+  document.getElementById('sheet-backdrop').classList.remove('open');
+  document.getElementById('show-detail-sheet').classList.remove('open');
 }
 
 // ── RPS state ─────────────────────────────────────────────────
 const BEATS = { Rock:'Scissors', Paper:'Rock', Scissors:'Paper' };
 let _thinkingInterval = null;
 let _resultTimeout    = null;
+let _lastChoice       = 'Rock';
 
-// ── Interactive Designer: pickRPS ─────────────────────────────
+// ── RPS Pick + Waiting screen wiring ─────────────────────────
 function pickRPS(btn, choice) {
+  _lastChoice = choice;
   document.querySelectorAll('.rps-btn').forEach(b => {
     b.classList.remove('chosen', 'unchosen');
     if (b === btn) b.classList.add('chosen');
@@ -1175,16 +1901,28 @@ function pickRPS(btn, choice) {
   clearInterval(_thinkingInterval);
   clearTimeout(_resultTimeout);
 
+  // Show waiting screen briefly (simulates real-time wait)
+  const waitBubble = document.getElementById('wait-your-bubble');
+  const waitLabel  = document.getElementById('wait-your-move-label');
+  if (waitBubble) waitBubble.innerHTML = HAND_SVGS[choice];
+  if (waitLabel)  waitLabel.textContent = choice;
+
+  // Navigate to waiting screen
+  _baseShowScreen('screen-rps-wait');
+
+  // Simulate opponent thinking with a longer wait before result
   let dotCount = 1;
+  let waitTimerEl = document.getElementById('wait-timer-label');
+  let oppBadge    = document.getElementById('wait-opp-badge');
   const thinkDelay = setTimeout(() => {
     _thinkingInterval = setInterval(() => {
       const dots = '·'.repeat(dotCount);
-      if (statusEl) statusEl.textContent = `Sam is thinking${dots}`;
+      if (oppBadge) oppBadge.textContent = `⏳ Thinking${dots}`;
       dotCount = (dotCount % 3) + 1;
     }, 500);
   }, 400);
 
-  const oppDelay = 1400 + Math.random() * 800;
+  const oppDelay = 2200 + Math.random() * 1000;
   _resultTimeout = setTimeout(() => {
     clearInterval(_thinkingInterval);
     clearTimeout(thinkDelay);
@@ -1193,7 +1931,7 @@ function pickRPS(btn, choice) {
     const oppMove = moves[Math.floor(Math.random() * moves.length)];
 
     let outcome;
-    if (choice === oppMove)            outcome = 'draw';
+    if (choice === oppMove)             outcome = 'draw';
     else if (BEATS[choice] === oppMove) outcome = 'win';
     else                                outcome = 'lose';
 
@@ -1204,9 +1942,9 @@ function pickRPS(btn, choice) {
     const oppMoveEl  = document.getElementById('result-move-opp');
     const winnerName = document.getElementById('result-winner-name');
 
-    if (youBubble) youBubble.innerHTML  = HAND_SVGS[choice];
-    if (oppBubble) oppBubble.innerHTML  = HAND_SVGS[oppMove];
-    if (youMove)   youMove.textContent  = choice;
+    if (youBubble) youBubble.innerHTML   = HAND_SVGS[choice];
+    if (oppBubble) oppBubble.innerHTML   = HAND_SVGS[oppMove];
+    if (youMove)   youMove.textContent   = choice;
     if (oppMoveEl) oppMoveEl.textContent = oppMove;
 
     if (youBubble) {
@@ -1226,7 +1964,7 @@ function pickRPS(btn, choice) {
       else                         winnerName.textContent = "It's a draw! 🤝";
     }
 
-    showScreen('screen-rps-result');
+    _baseShowScreen('screen-rps-result');
   }, oppDelay);
 }
 
@@ -1243,6 +1981,9 @@ function retryRPS(e) {
   });
   const statusEl = document.getElementById('rps-opp-status');
   if (statusEl) statusEl.textContent = 'Waiting for Sam...';
+  // Reset wait screen badge
+  const oppBadge = document.getElementById('wait-opp-badge');
+  if (oppBadge) oppBadge.textContent = '⏳ Thinking…';
 }
 
 function retryFromResult() {
@@ -1252,14 +1993,15 @@ function retryFromResult() {
 
 function showScreen(id) {
   if (id === 'screen-rps-choose') retryRPS({ stopPropagation:()=>{} });
+  if (id === 'screen-loading') { clearTimeout(_loadingTimeout); }
   _baseShowScreen(id);
 }
 
 // ── Seed result screen with initial SVG hands ─────────────────
 document.getElementById('result-bubble-you').innerHTML = HAND_SVGS['Rock'];
 document.getElementById('result-bubble-opp').innerHTML = HAND_SVGS['Scissors'];
-
-// (old duplicate removed — functions above are the canonical versions)
+// Seed waiting screen bubble
+document.getElementById('wait-your-bubble').innerHTML = HAND_SVGS['Rock'];
 </script>
 </body>
 </html>
