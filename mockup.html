@@ -1150,144 +1150,196 @@ body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;background:#0f111
             <div class="rps-card-label">Choose your move</div>
             <div class="rps-picker">
 
-              <!-- Rock: closed fist, knuckles at TOP (low y), wrist at BOTTOM (high y) -->
+              <!-- Rock: 3D clay fist from Figma design system -->
               <div class="rps-btn" id="rps-rock" onclick="pickRPS(this,'Rock')">
                 <div class="rps-bubble" id="bubble-rock">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
                     <defs>
-                      <linearGradient id="rk_body" x1="30%" y1="0%" x2="70%" y2="100%">
-                        <stop offset="0%" stop-color="#FFDBB8"/>
-                        <stop offset="55%" stop-color="#F0B882"/>
-                        <stop offset="100%" stop-color="#D4895A"/>
-                      </linearGradient>
-                      <linearGradient id="rk_wrist" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#F0B882"/>
-                        <stop offset="100%" stop-color="#C97840"/>
-                      </linearGradient>
-                      <radialGradient id="rk_hl" cx="35%" cy="30%" r="55%">
-                        <stop offset="0%" stop-color="#FFF0E0" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#FFF0E0" stop-opacity="0"/>
+                      <radialGradient id="irk_a" cx="43%" cy="36%" r="58%" gradientUnits="userSpaceOnUse" gradientTransform="translate(40,40) scale(1) translate(-40,-40)">
+                        <stop offset="0%" stop-color="#FFE5C7"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/>
                       </radialGradient>
+                      <radialGradient id="irk_b" cx="55%" cy="52%" r="52%">
+                        <stop offset="13%" stop-color="#E8AC88"/><stop offset="100%" stop-color="#E8AC88" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="irk_c" cx="30%" cy="32%" r="55%">
+                        <stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="irk_d" cx="50%" cy="12%" r="68%">
+                        <stop offset="67%" stop-color="#C38586" stop-opacity="0"/><stop offset="100%" stop-color="#C38586"/>
+                      </radialGradient>
+                      <radialGradient id="irk_e" cx="80%" cy="14%" r="38%">
+                        <stop offset="0%" stop-color="#D2A68B"/><stop offset="100%" stop-color="#D2A68B" stop-opacity="0"/>
+                      </radialGradient>
+                      <!-- thumb finger -->
+                      <radialGradient id="irk_f" cx="43%" cy="36%" r="58%">
+                        <stop offset="0%" stop-color="#FFD6BA"/><stop offset="58%" stop-color="#F0B882"/><stop offset="100%" stop-color="#D4895A"/>
+                      </radialGradient>
+                      <radialGradient id="irk_g" cx="43%" cy="36%" r="58%">
+                        <stop offset="0%" stop-color="#FFE5C7"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/>
+                      </radialGradient>
+                      <!-- palm base -->
+                      <radialGradient id="irk_h" cx="38%" cy="30%" r="62%">
+                        <stop offset="0%" stop-color="#FFDABA"/><stop offset="58%" stop-color="#EBB79E"/><stop offset="100%" stop-color="#D1A083"/>
+                      </radialGradient>
+                      <linearGradient id="irk_hi" x1="8%" y1="50%" x2="88%" y2="50%">
+                        <stop offset="0%" stop-color="#FFDDC2"/><stop offset="100%" stop-color="#FFDDC2" stop-opacity="0"/>
+                      </linearGradient>
                     </defs>
-                    <!-- Wrist / forearm base at bottom -->
-                    <rect x="22" y="54" width="36" height="20" rx="6" fill="url(#rk_wrist)"/>
-                    <!-- Fist main body — 4 curled fingers -->
-                    <rect x="14" y="28" width="52" height="32" rx="12" fill="url(#rk_body)"/>
-                    <!-- Knuckle ridge row at top of fist -->
-                    <rect x="16" y="27" width="48" height="7" rx="5" fill="#FFDBB8"/>
-                    <!-- Individual knuckle bumps -->
-                    <ellipse cx="24" cy="27" rx="6" ry="4" fill="#FFE8CC"/>
-                    <ellipse cx="35" cy="25" rx="6" ry="4" fill="#FFE8CC"/>
-                    <ellipse cx="46" cy="25" rx="6" ry="4" fill="#FFE8CC"/>
-                    <ellipse cx="57" cy="27" rx="5" ry="4" fill="#FFE8CC"/>
-                    <!-- Knuckle crease lines -->
-                    <line x1="16" y1="38" x2="64" y2="38" stroke="#C97840" stroke-width="1" opacity="0.35"/>
-                    <line x1="16" y1="45" x2="64" y2="45" stroke="#C97840" stroke-width="0.8" opacity="0.25"/>
-                    <!-- Thumb — tucked along left side, pointing slightly up-right -->
-                    <ellipse cx="17" cy="42" rx="6" ry="11" fill="url(#rk_body)" transform="rotate(15 17 42)"/>
-                    <ellipse cx="16" cy="36" rx="3.5" ry="5" fill="#FFDBB8" opacity="0.7" transform="rotate(15 16 36)"/>
-                    <!-- Highlight on fist top -->
-                    <ellipse cx="40" cy="30" rx="20" ry="6" fill="url(#rk_hl)"/>
-                    <!-- Right-side shadow -->
-                    <rect x="58" y="28" width="8" height="30" rx="5" fill="#C07040" opacity="0.18"/>
+                    <!-- Palm / wrist base -->
+                    <rect x="16" y="46" width="48" height="24" rx="10" fill="url(#irk_h)"/>
+                    <!-- Fist body — curled fingers block -->
+                    <rect x="10" y="22" width="60" height="32" rx="14" fill="url(#irk_a)"/>
+                    <rect x="10" y="22" width="60" height="32" rx="14" fill="url(#irk_b)"/>
+                    <rect x="10" y="22" width="60" height="32" rx="14" fill="url(#irk_c)"/>
+                    <rect x="10" y="22" width="60" height="32" rx="14" fill="url(#irk_d)"/>
+                    <rect x="10" y="22" width="60" height="32" rx="14" fill="url(#irk_e)"/>
+                    <!-- Knuckle row highlight -->
+                    <ellipse cx="22" cy="22" rx="7" ry="5" fill="#FFE8CC" opacity="0.85"/>
+                    <ellipse cx="34" cy="20" rx="7" ry="5" fill="#FFE8CC" opacity="0.85"/>
+                    <ellipse cx="46" cy="20" rx="7" ry="5" fill="#FFE8CC" opacity="0.85"/>
+                    <ellipse cx="58" cy="22" rx="6" ry="5" fill="#FFE8CC" opacity="0.85"/>
+                    <!-- Knuckle top ridge -->
+                    <rect x="12" y="19" width="56" height="8" rx="6" fill="#FFDBB8" opacity="0.55"/>
+                    <!-- Crease lines -->
+                    <line x1="12" y1="36" x2="68" y2="36" stroke="#C07040" stroke-width="0.8" opacity="0.25"/>
+                    <line x1="12" y1="43" x2="68" y2="43" stroke="#C07040" stroke-width="0.7" opacity="0.18"/>
+                    <!-- Thumb — tucked left side -->
+                    <ellipse cx="14" cy="38" rx="7" ry="13" fill="url(#irk_f)" transform="rotate(12 14 38)"/>
+                    <ellipse cx="13" cy="31" rx="4" ry="6" fill="#FFDBB8" opacity="0.6" transform="rotate(12 13 31)"/>
+                    <!-- Highlight specular -->
+                    <ellipse cx="40" cy="25" rx="22" ry="7" fill="url(#irk_hi)" opacity="0.6"/>
+                    <!-- Right shadow -->
+                    <rect x="62" y="22" width="8" height="28" rx="6" fill="#C07040" opacity="0.14"/>
+                    <!-- Knuckle crease lines along finger tops -->
+                    <path d="M16 28 Q22 26 28 28" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/>
+                    <path d="M28 27 Q34 24 40 27" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/>
+                    <path d="M40 27 Q46 24 52 27" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/>
+                    <path d="M52 28 Q58 26 64 28" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/>
                   </svg>
                 </div>
                 <span class="rps-btn-label">Rock<br/>(Beat Scissors)</span>
                 <button class="rps-retry-btn" id="retry-rock" onclick="retryRPS(event)">RETRY</button>
               </div>
 
-              <!-- Paper: open flat hand, fingers pointing UP (low y = finger tips) -->
+              <!-- Paper: 3D clay open hand from Figma design system -->
               <div class="rps-btn" id="rps-paper" onclick="pickRPS(this,'Paper')">
                 <div class="rps-bubble" id="bubble-paper">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
                     <defs>
-                      <linearGradient id="pp_finger" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#FFE8CC"/>
-                        <stop offset="60%" stop-color="#F0B882"/>
-                        <stop offset="100%" stop-color="#D4895A"/>
+                      <linearGradient id="ipp_fg" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#FFE8CA"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/>
                       </linearGradient>
-                      <linearGradient id="pp_palm" x1="20%" y1="0%" x2="80%" y2="100%">
-                        <stop offset="0%" stop-color="#FFDBB8"/>
-                        <stop offset="100%" stop-color="#D4895A"/>
+                      <linearGradient id="ipp_fg2" x1="8%" y1="50%" x2="88%" y2="50%">
+                        <stop offset="13%" stop-color="#E8AC88"/><stop offset="100%" stop-color="#E8AC88" stop-opacity="0"/>
                       </linearGradient>
-                      <radialGradient id="pp_hl" cx="35%" cy="40%" r="55%">
-                        <stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.8"/>
-                        <stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/>
+                      <radialGradient id="ipp_fg3" cx="30%" cy="0%" r="60%">
+                        <stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="ipp_palm" cx="38%" cy="35%" r="62%">
+                        <stop offset="0%" stop-color="#FFDABA"/><stop offset="58%" stop-color="#EBB79E"/><stop offset="100%" stop-color="#D1A083"/>
+                      </radialGradient>
+                      <radialGradient id="ipp_hl" cx="35%" cy="40%" r="58%">
+                        <stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.75"/><stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="ipp_shadow" cx="50%" cy="12%" r="68%">
+                        <stop offset="67%" stop-color="#C38586" stop-opacity="0"/><stop offset="100%" stop-color="#C38586"/>
                       </radialGradient>
                     </defs>
-                    <!-- Palm base — bottom half -->
-                    <rect x="10" y="46" width="58" height="28" rx="10" fill="url(#pp_palm)"/>
-                    <!-- Thumb — left side, angled out -->
-                    <rect x="5" y="36" width="12" height="26" rx="6" fill="url(#pp_finger)" transform="rotate(-22 11 49)"/>
-                    <ellipse cx="8" cy="36" rx="4" ry="3" fill="#FFE8CC" opacity="0.6" transform="rotate(-22 11 49)"/>
+                    <!-- Palm base -->
+                    <rect x="8" y="48" width="64" height="26" rx="12" fill="url(#ipp_palm)"/>
+                    <!-- Thumb angled out-left -->
+                    <rect x="3" y="35" width="13" height="28" rx="6.5" fill="url(#ipp_fg)" transform="rotate(-20 9.5 49)"/>
+                    <ellipse cx="6" cy="35" rx="5" ry="3.5" fill="#FFE8CC" opacity="0.55" transform="rotate(-20 9.5 49)"/>
                     <!-- Index finger -->
-                    <rect x="14" y="12" width="11" height="38" rx="5.5" fill="url(#pp_finger)"/>
-                    <ellipse cx="19.5" cy="14" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.55"/>
+                    <rect x="14" y="10" width="12" height="42" rx="6" fill="url(#ipp_fg)"/>
+                    <rect x="14" y="10" width="12" height="42" rx="6" fill="url(#ipp_fg2)"/>
+                    <rect x="14" y="10" width="12" height="42" rx="6" fill="url(#ipp_fg3)"/>
+                    <ellipse cx="20" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.65"/>
                     <!-- Middle finger (tallest) -->
-                    <rect x="27" y="8" width="11" height="42" rx="5.5" fill="url(#pp_finger)"/>
-                    <ellipse cx="32.5" cy="10" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.55"/>
+                    <rect x="27" y="6" width="13" height="46" rx="6.5" fill="url(#ipp_fg)"/>
+                    <rect x="27" y="6" width="13" height="46" rx="6.5" fill="url(#ipp_fg2)"/>
+                    <rect x="27" y="6" width="13" height="46" rx="6.5" fill="url(#ipp_fg3)"/>
+                    <ellipse cx="33.5" cy="8" rx="5.5" ry="4" fill="#FFE8CC" opacity="0.65"/>
                     <!-- Ring finger -->
-                    <rect x="40" y="12" width="11" height="38" rx="5.5" fill="url(#pp_finger)"/>
-                    <ellipse cx="45.5" cy="14" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.55"/>
+                    <rect x="41" y="10" width="12" height="42" rx="6" fill="url(#ipp_fg)"/>
+                    <rect x="41" y="10" width="12" height="42" rx="6" fill="url(#ipp_fg2)"/>
+                    <rect x="41" y="10" width="12" height="42" rx="6" fill="url(#ipp_fg3)"/>
+                    <ellipse cx="47" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.65"/>
                     <!-- Pinky -->
-                    <rect x="53" y="19" width="10" height="31" rx="5" fill="url(#pp_finger)"/>
-                    <ellipse cx="58" cy="21" rx="4" ry="3" fill="#FFE8CC" opacity="0.55"/>
+                    <rect x="54" y="17" width="11" height="35" rx="5.5" fill="url(#ipp_fg)"/>
+                    <rect x="54" y="17" width="11" height="35" rx="5.5" fill="url(#ipp_fg2)"/>
+                    <ellipse cx="59.5" cy="19" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.65"/>
                     <!-- Palm highlight -->
-                    <ellipse cx="38" cy="58" rx="22" ry="10" fill="url(#pp_hl)"/>
-                    <!-- Finger separation creases -->
-                    <line x1="25" y1="48" x2="25" y2="52" stroke="#C97840" stroke-width="1" opacity="0.3"/>
-                    <line x1="38" y1="48" x2="38" y2="52" stroke="#C97840" stroke-width="1" opacity="0.3"/>
-                    <line x1="51" y1="48" x2="51" y2="52" stroke="#C97840" stroke-width="1" opacity="0.3"/>
+                    <ellipse cx="38" cy="60" rx="24" ry="11" fill="url(#ipp_hl)"/>
+                    <!-- Top edge shadow -->
+                    <rect x="8" y="48" width="64" height="26" rx="12" fill="url(#ipp_shadow)" opacity="0.4"/>
+                    <!-- Finger separation grooves -->
+                    <line x1="26" y1="50" x2="26" y2="56" stroke="#C97840" stroke-width="1" opacity="0.22"/>
+                    <line x1="40" y1="50" x2="40" y2="56" stroke="#C97840" stroke-width="1" opacity="0.22"/>
+                    <line x1="53" y1="50" x2="53" y2="56" stroke="#C97840" stroke-width="1" opacity="0.22"/>
                   </svg>
                 </div>
                 <span class="rps-btn-label">Paper<br/>(Beat Rock)</span>
                 <button class="rps-retry-btn" id="retry-paper" onclick="retryRPS(event)">RETRY</button>
               </div>
 
-              <!-- Scissors: index+middle extended UP, other fingers curled at bottom -->
+              <!-- Scissors: 3D clay V-sign from Figma design system -->
               <div class="rps-btn" id="rps-scissors" onclick="pickRPS(this,'Scissors')">
                 <div class="rps-bubble" id="bubble-scissors">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
                     <defs>
-                      <linearGradient id="sc2_ext" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#FFE8CC"/>
-                        <stop offset="60%" stop-color="#F0B882"/>
-                        <stop offset="100%" stop-color="#D4895A"/>
+                      <linearGradient id="isc_ext" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#FFE8CA"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/>
                       </linearGradient>
-                      <linearGradient id="sc2_palm" x1="20%" y1="0%" x2="80%" y2="100%">
-                        <stop offset="0%" stop-color="#FFDBB8"/>
-                        <stop offset="100%" stop-color="#D4895A"/>
+                      <linearGradient id="isc_ext2" x1="8%" y1="50%" x2="88%" y2="50%">
+                        <stop offset="13%" stop-color="#E8AC88"/><stop offset="100%" stop-color="#E8AC88" stop-opacity="0"/>
                       </linearGradient>
-                      <linearGradient id="sc2_curl" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#F0B882"/>
-                        <stop offset="100%" stop-color="#C07040"/>
+                      <radialGradient id="isc_ext3" cx="30%" cy="0%" r="60%">
+                        <stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="isc_palm" cx="38%" cy="35%" r="62%">
+                        <stop offset="0%" stop-color="#FFDABA"/><stop offset="58%" stop-color="#EBB79E"/><stop offset="100%" stop-color="#D1A083"/>
+                      </radialGradient>
+                      <linearGradient id="isc_curl" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#C97840"/>
                       </linearGradient>
-                      <radialGradient id="sc2_hl" cx="35%" cy="35%" r="55%">
-                        <stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.8"/>
-                        <stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/>
+                      <radialGradient id="isc_curl2" cx="35%" cy="30%" r="55%">
+                        <stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="isc_hl" cx="35%" cy="60%" r="55%">
+                        <stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.7"/><stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/>
                       </radialGradient>
                     </defs>
-                    <!-- Palm + wrist base at bottom -->
-                    <rect x="12" y="48" width="54" height="26" rx="10" fill="url(#sc2_palm)"/>
-                    <!-- Thumb curled at bottom-left -->
-                    <ellipse cx="18" cy="52" rx="9" ry="7" fill="url(#sc2_curl)" transform="rotate(-10 18 52)"/>
-                    <ellipse cx="16" cy="49" rx="5" ry="4" fill="#FFDBB8" opacity="0.5" transform="rotate(-10 16 49)"/>
-                    <!-- Ring finger curled — bump at mid-right -->
-                    <ellipse cx="52" cy="47" rx="8" ry="7" fill="url(#sc2_curl)"/>
-                    <ellipse cx="52" cy="43" rx="5" ry="4" fill="#FFDBB8" opacity="0.45"/>
-                    <!-- Pinky curled — far right -->
-                    <ellipse cx="64" cy="50" rx="7" ry="6" fill="url(#sc2_curl)"/>
-                    <ellipse cx="64" cy="46" rx="4" ry="3" fill="#FFDBB8" opacity="0.4"/>
-                    <!-- Index finger extended — left of V, angles slightly left -->
-                    <rect x="18" y="10" width="12" height="42" rx="6" fill="url(#sc2_ext)" transform="rotate(-6 24 52)"/>
-                    <ellipse cx="21" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.55" transform="rotate(-6 24 52)"/>
-                    <!-- Middle finger extended — right of V, angles slightly right -->
-                    <rect x="34" y="10" width="12" height="42" rx="6" fill="url(#sc2_ext)" transform="rotate(6 40 52)"/>
-                    <ellipse cx="40" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.55" transform="rotate(6 40 52)"/>
-                    <!-- V gap shadow -->
-                    <path d="M30 52 L32 30 L34 10" stroke="#C07040" stroke-width="1.5" fill="none" opacity="0.2"/>
-                    <!-- Highlight -->
-                    <ellipse cx="38" cy="58" rx="18" ry="8" fill="url(#sc2_hl)"/>
+                    <!-- Palm + wrist base -->
+                    <rect x="10" y="48" width="60" height="26" rx="12" fill="url(#isc_palm)"/>
+                    <!-- Thumb curled — bottom left bump -->
+                    <ellipse cx="16" cy="52" rx="11" ry="8" fill="url(#isc_curl)" transform="rotate(-12 16 52)"/>
+                    <ellipse cx="16" cy="52" rx="11" ry="8" fill="url(#isc_curl2)" transform="rotate(-12 16 52)"/>
+                    <ellipse cx="15" cy="47" rx="6" ry="5" fill="#FFDBB8" opacity="0.55" transform="rotate(-12 15 47)"/>
+                    <!-- Ring finger curled — mid-right bump -->
+                    <ellipse cx="53" cy="47" rx="9" ry="8" fill="url(#isc_curl)"/>
+                    <ellipse cx="53" cy="47" rx="9" ry="8" fill="url(#isc_curl2)"/>
+                    <ellipse cx="53" cy="42" rx="6" ry="5" fill="#FFDBB8" opacity="0.5"/>
+                    <!-- Pinky curled — far right bump -->
+                    <ellipse cx="66" cy="51" rx="8" ry="7" fill="url(#isc_curl)"/>
+                    <ellipse cx="66" cy="47" rx="5" ry="4" fill="#FFDBB8" opacity="0.45"/>
+                    <!-- Index finger — tilts slightly left -->
+                    <rect x="16" y="8" width="13" height="44" rx="6.5" fill="url(#isc_ext)" transform="rotate(-7 22.5 52)"/>
+                    <rect x="16" y="8" width="13" height="44" rx="6.5" fill="url(#isc_ext2)" transform="rotate(-7 22.5 52)"/>
+                    <rect x="16" y="8" width="13" height="44" rx="6.5" fill="url(#isc_ext3)" transform="rotate(-7 22.5 52)"/>
+                    <ellipse cx="20" cy="10" rx="5.5" ry="4" fill="#FFE8CC" opacity="0.65" transform="rotate(-7 22.5 52)"/>
+                    <!-- Middle finger — tilts slightly right -->
+                    <rect x="34" y="8" width="13" height="44" rx="6.5" fill="url(#isc_ext)" transform="rotate(7 40.5 52)"/>
+                    <rect x="34" y="8" width="13" height="44" rx="6.5" fill="url(#isc_ext2)" transform="rotate(7 40.5 52)"/>
+                    <rect x="34" y="8" width="13" height="44" rx="6.5" fill="url(#isc_ext3)" transform="rotate(7 40.5 52)"/>
+                    <ellipse cx="40" cy="10" rx="5.5" ry="4" fill="#FFE8CC" opacity="0.65" transform="rotate(7 40.5 52)"/>
+                    <!-- V gap crease shadow -->
+                    <path d="M29 52 Q31 35 33 8" stroke="#C07040" stroke-width="1.2" fill="none" opacity="0.18"/>
+                    <!-- Palm highlight -->
+                    <ellipse cx="38" cy="62" rx="22" ry="10" fill="url(#isc_hl)"/>
+                    <!-- Fingernail highlights -->
+                    <ellipse cx="20" cy="10" rx="3.5" ry="2.5" fill="white" opacity="0.22" transform="rotate(-7 22.5 52)"/>
+                    <ellipse cx="40" cy="10" rx="3.5" ry="2.5" fill="white" opacity="0.22" transform="rotate(7 40.5 52)"/>
                   </svg>
                 </div>
                 <span class="rps-btn-label">Scissors<br/>(Beat Paper)</span>
@@ -1715,11 +1767,12 @@ const TAB_ICONS = {
   }
 };
 
-// ── SVG hand illustrations from UX Designer A (for result screen bubbles) ──
+// ── SVG hand illustrations — Figma-derived layered gradient clay hands ──
+// ID prefix rs2_ / ps2_ / scs2_ to avoid collision with inline picker SVGs
 const HAND_SVGS = {
-  Rock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="rs_body" x1="30%" y1="0%" x2="70%" y2="100%"><stop offset="0%" stop-color="#FFDBB8"/><stop offset="55%" stop-color="#F0B882"/><stop offset="100%" stop-color="#D4895A"/></linearGradient><linearGradient id="rs_wrist" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0B882"/><stop offset="100%" stop-color="#C97840"/></linearGradient><radialGradient id="rs_hl" cx="35%" cy="30%" r="55%"><stop offset="0%" stop-color="#FFF0E0" stop-opacity="0.9"/><stop offset="100%" stop-color="#FFF0E0" stop-opacity="0"/></radialGradient></defs><rect x="22" y="54" width="36" height="20" rx="6" fill="url(#rs_wrist)"/><rect x="14" y="28" width="52" height="32" rx="12" fill="url(#rs_body)"/><rect x="16" y="27" width="48" height="7" rx="5" fill="#FFDBB8"/><ellipse cx="24" cy="27" rx="6" ry="4" fill="#FFE8CC"/><ellipse cx="35" cy="25" rx="6" ry="4" fill="#FFE8CC"/><ellipse cx="46" cy="25" rx="6" ry="4" fill="#FFE8CC"/><ellipse cx="57" cy="27" rx="5" ry="4" fill="#FFE8CC"/><line x1="16" y1="38" x2="64" y2="38" stroke="#C97840" stroke-width="1" opacity="0.35"/><line x1="16" y1="45" x2="64" y2="45" stroke="#C97840" stroke-width="0.8" opacity="0.25"/><ellipse cx="17" cy="42" rx="6" ry="11" fill="url(#rs_body)" transform="rotate(15 17 42)"/><ellipse cx="16" cy="36" rx="3.5" ry="5" fill="#FFDBB8" opacity="0.7" transform="rotate(15 16 36)"/><ellipse cx="40" cy="30" rx="20" ry="6" fill="url(#rs_hl)"/></svg>`,
-  Paper: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="ps_finger" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE8CC"/><stop offset="60%" stop-color="#F0B882"/><stop offset="100%" stop-color="#D4895A"/></linearGradient><linearGradient id="ps_palm" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#FFDBB8"/><stop offset="100%" stop-color="#D4895A"/></linearGradient><radialGradient id="ps_hl" cx="35%" cy="40%" r="55%"><stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.8"/><stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/></radialGradient></defs><rect x="10" y="46" width="58" height="28" rx="10" fill="url(#ps_palm)"/><rect x="5" y="36" width="12" height="26" rx="6" fill="url(#ps_finger)" transform="rotate(-22 11 49)"/><rect x="14" y="12" width="11" height="38" rx="5.5" fill="url(#ps_finger)"/><ellipse cx="19.5" cy="14" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.55"/><rect x="27" y="8" width="11" height="42" rx="5.5" fill="url(#ps_finger)"/><ellipse cx="32.5" cy="10" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.55"/><rect x="40" y="12" width="11" height="38" rx="5.5" fill="url(#ps_finger)"/><ellipse cx="45.5" cy="14" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.55"/><rect x="53" y="19" width="10" height="31" rx="5" fill="url(#ps_finger)"/><ellipse cx="58" cy="21" rx="4" ry="3" fill="#FFE8CC" opacity="0.55"/><ellipse cx="38" cy="58" rx="22" ry="10" fill="url(#ps_hl)"/></svg>`,
-  Scissors: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="scs_ext" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE8CC"/><stop offset="60%" stop-color="#F0B882"/><stop offset="100%" stop-color="#D4895A"/></linearGradient><linearGradient id="scs_palm" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#FFDBB8"/><stop offset="100%" stop-color="#D4895A"/></linearGradient><linearGradient id="scs_curl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0B882"/><stop offset="100%" stop-color="#C07040"/></linearGradient><radialGradient id="scs_hl" cx="35%" cy="35%" r="55%"><stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.8"/><stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/></radialGradient></defs><rect x="12" y="48" width="54" height="26" rx="10" fill="url(#scs_palm)"/><ellipse cx="18" cy="52" rx="9" ry="7" fill="url(#scs_curl)" transform="rotate(-10 18 52)"/><ellipse cx="52" cy="47" rx="8" ry="7" fill="url(#scs_curl)"/><ellipse cx="64" cy="50" rx="7" ry="6" fill="url(#scs_curl)"/><rect x="18" y="10" width="12" height="42" rx="6" fill="url(#scs_ext)" transform="rotate(-6 24 52)"/><ellipse cx="21" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.55" transform="rotate(-6 24 52)"/><rect x="34" y="10" width="12" height="42" rx="6" fill="url(#scs_ext)" transform="rotate(6 40 52)"/><ellipse cx="40" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.55" transform="rotate(6 40 52)"/><ellipse cx="38" cy="58" rx="18" ry="8" fill="url(#scs_hl)"/></svg>`
+  Rock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><radialGradient id="rs2_a" cx="43%" cy="36%" r="58%" gradientUnits="userSpaceOnUse" gradientTransform="translate(40,40) scale(1) translate(-40,-40)"><stop offset="0%" stop-color="#FFE5C7"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/></radialGradient><radialGradient id="rs2_b" cx="55%" cy="52%" r="52%"><stop offset="13%" stop-color="#E8AC88"/><stop offset="100%" stop-color="#E8AC88" stop-opacity="0"/></radialGradient><radialGradient id="rs2_c" cx="30%" cy="32%" r="55%"><stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/></radialGradient><radialGradient id="rs2_d" cx="50%" cy="12%" r="68%"><stop offset="67%" stop-color="#C38586" stop-opacity="0"/><stop offset="100%" stop-color="#C38586"/></radialGradient><radialGradient id="rs2_e" cx="80%" cy="14%" r="38%"><stop offset="0%" stop-color="#D2A68B"/><stop offset="100%" stop-color="#D2A68B" stop-opacity="0"/></radialGradient><radialGradient id="rs2_f" cx="43%" cy="36%" r="58%"><stop offset="0%" stop-color="#FFD6BA"/><stop offset="58%" stop-color="#F0B882"/><stop offset="100%" stop-color="#D4895A"/></radialGradient><radialGradient id="rs2_h" cx="38%" cy="30%" r="62%"><stop offset="0%" stop-color="#FFDABA"/><stop offset="58%" stop-color="#EBB79E"/><stop offset="100%" stop-color="#D1A083"/></radialGradient><linearGradient id="rs2_hi" x1="8%" y1="50%" x2="88%" y2="50%"><stop offset="0%" stop-color="#FFDDC2"/><stop offset="100%" stop-color="#FFDDC2" stop-opacity="0"/></linearGradient></defs><rect x="16" y="46" width="48" height="24" rx="10" fill="url(#rs2_h)"/><rect x="10" y="22" width="60" height="32" rx="14" fill="url(#rs2_a)"/><rect x="10" y="22" width="60" height="32" rx="14" fill="url(#rs2_b)"/><rect x="10" y="22" width="60" height="32" rx="14" fill="url(#rs2_c)"/><rect x="10" y="22" width="60" height="32" rx="14" fill="url(#rs2_d)"/><rect x="10" y="22" width="60" height="32" rx="14" fill="url(#rs2_e)"/><ellipse cx="22" cy="22" rx="7" ry="5" fill="#FFE8CC" opacity="0.85"/><ellipse cx="34" cy="20" rx="7" ry="5" fill="#FFE8CC" opacity="0.85"/><ellipse cx="46" cy="20" rx="7" ry="5" fill="#FFE8CC" opacity="0.85"/><ellipse cx="58" cy="22" rx="6" ry="5" fill="#FFE8CC" opacity="0.85"/><rect x="12" y="19" width="56" height="8" rx="6" fill="#FFDBB8" opacity="0.55"/><line x1="12" y1="36" x2="68" y2="36" stroke="#C07040" stroke-width="0.8" opacity="0.25"/><line x1="12" y1="43" x2="68" y2="43" stroke="#C07040" stroke-width="0.7" opacity="0.18"/><ellipse cx="14" cy="38" rx="7" ry="13" fill="url(#rs2_f)" transform="rotate(12 14 38)"/><ellipse cx="13" cy="31" rx="4" ry="6" fill="#FFDBB8" opacity="0.6" transform="rotate(12 13 31)"/><ellipse cx="40" cy="25" rx="22" ry="7" fill="url(#rs2_hi)" opacity="0.6"/><rect x="62" y="22" width="8" height="28" rx="6" fill="#C07040" opacity="0.14"/><path d="M16 28 Q22 26 28 28" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/><path d="M28 27 Q34 24 40 27" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/><path d="M40 27 Q46 24 52 27" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/><path d="M52 28 Q58 26 64 28" stroke="#C97840" stroke-width="0.8" fill="none" opacity="0.3"/></svg>`,
+  Paper: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="ps2_fg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE8CA"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/></linearGradient><linearGradient id="ps2_fg2" x1="8%" y1="50%" x2="88%" y2="50%"><stop offset="13%" stop-color="#E8AC88"/><stop offset="100%" stop-color="#E8AC88" stop-opacity="0"/></linearGradient><radialGradient id="ps2_fg3" cx="30%" cy="0%" r="60%"><stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/></radialGradient><radialGradient id="ps2_palm" cx="38%" cy="35%" r="62%"><stop offset="0%" stop-color="#FFDABA"/><stop offset="58%" stop-color="#EBB79E"/><stop offset="100%" stop-color="#D1A083"/></radialGradient><radialGradient id="ps2_hl" cx="35%" cy="40%" r="58%"><stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.75"/><stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/></radialGradient><radialGradient id="ps2_shadow" cx="50%" cy="12%" r="68%"><stop offset="67%" stop-color="#C38586" stop-opacity="0"/><stop offset="100%" stop-color="#C38586"/></radialGradient></defs><rect x="8" y="48" width="64" height="26" rx="12" fill="url(#ps2_palm)"/><rect x="3" y="35" width="13" height="28" rx="6.5" fill="url(#ps2_fg)" transform="rotate(-20 9.5 49)"/><ellipse cx="6" cy="35" rx="5" ry="3.5" fill="#FFE8CC" opacity="0.55" transform="rotate(-20 9.5 49)"/><rect x="14" y="10" width="12" height="42" rx="6" fill="url(#ps2_fg)"/><rect x="14" y="10" width="12" height="42" rx="6" fill="url(#ps2_fg2)"/><rect x="14" y="10" width="12" height="42" rx="6" fill="url(#ps2_fg3)"/><ellipse cx="20" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.65"/><rect x="27" y="6" width="13" height="46" rx="6.5" fill="url(#ps2_fg)"/><rect x="27" y="6" width="13" height="46" rx="6.5" fill="url(#ps2_fg2)"/><rect x="27" y="6" width="13" height="46" rx="6.5" fill="url(#ps2_fg3)"/><ellipse cx="33.5" cy="8" rx="5.5" ry="4" fill="#FFE8CC" opacity="0.65"/><rect x="41" y="10" width="12" height="42" rx="6" fill="url(#ps2_fg)"/><rect x="41" y="10" width="12" height="42" rx="6" fill="url(#ps2_fg2)"/><rect x="41" y="10" width="12" height="42" rx="6" fill="url(#ps2_fg3)"/><ellipse cx="47" cy="12" rx="5" ry="4" fill="#FFE8CC" opacity="0.65"/><rect x="54" y="17" width="11" height="35" rx="5.5" fill="url(#ps2_fg)"/><rect x="54" y="17" width="11" height="35" rx="5.5" fill="url(#ps2_fg2)"/><ellipse cx="59.5" cy="19" rx="4.5" ry="3.5" fill="#FFE8CC" opacity="0.65"/><ellipse cx="38" cy="60" rx="24" ry="11" fill="url(#ps2_hl)"/><rect x="8" y="48" width="64" height="26" rx="12" fill="url(#ps2_shadow)" opacity="0.4"/><line x1="26" y1="50" x2="26" y2="56" stroke="#C97840" stroke-width="1" opacity="0.22"/><line x1="40" y1="50" x2="40" y2="56" stroke="#C97840" stroke-width="1" opacity="0.22"/><line x1="53" y1="50" x2="53" y2="56" stroke="#C97840" stroke-width="1" opacity="0.22"/></svg>`,
+  Scissors: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="scs2_ext" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFE8CA"/><stop offset="58%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#DCA486"/></linearGradient><linearGradient id="scs2_ext2" x1="8%" y1="50%" x2="88%" y2="50%"><stop offset="13%" stop-color="#E8AC88"/><stop offset="100%" stop-color="#E8AC88" stop-opacity="0"/></linearGradient><radialGradient id="scs2_ext3" cx="30%" cy="0%" r="60%"><stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/></radialGradient><radialGradient id="scs2_palm" cx="38%" cy="35%" r="62%"><stop offset="0%" stop-color="#FFDABA"/><stop offset="58%" stop-color="#EBB79E"/><stop offset="100%" stop-color="#D1A083"/></radialGradient><linearGradient id="scs2_curl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F6C2A7"/><stop offset="100%" stop-color="#C97840"/></linearGradient><radialGradient id="scs2_curl2" cx="35%" cy="30%" r="55%"><stop offset="0%" stop-color="#D7AB93"/><stop offset="100%" stop-color="#D7AB93" stop-opacity="0"/></radialGradient><radialGradient id="scs2_hl" cx="35%" cy="60%" r="55%"><stop offset="0%" stop-color="#FFF4E8" stop-opacity="0.7"/><stop offset="100%" stop-color="#FFF4E8" stop-opacity="0"/></radialGradient></defs><rect x="10" y="48" width="60" height="26" rx="12" fill="url(#scs2_palm)"/><ellipse cx="16" cy="52" rx="11" ry="8" fill="url(#scs2_curl)" transform="rotate(-12 16 52)"/><ellipse cx="16" cy="52" rx="11" ry="8" fill="url(#scs2_curl2)" transform="rotate(-12 16 52)"/><ellipse cx="15" cy="47" rx="6" ry="5" fill="#FFDBB8" opacity="0.55" transform="rotate(-12 15 47)"/><ellipse cx="53" cy="47" rx="9" ry="8" fill="url(#scs2_curl)"/><ellipse cx="53" cy="47" rx="9" ry="8" fill="url(#scs2_curl2)"/><ellipse cx="53" cy="42" rx="6" ry="5" fill="#FFDBB8" opacity="0.5"/><ellipse cx="66" cy="51" rx="8" ry="7" fill="url(#scs2_curl)"/><ellipse cx="66" cy="47" rx="5" ry="4" fill="#FFDBB8" opacity="0.45"/><rect x="16" y="8" width="13" height="44" rx="6.5" fill="url(#scs2_ext)" transform="rotate(-7 22.5 52)"/><rect x="16" y="8" width="13" height="44" rx="6.5" fill="url(#scs2_ext2)" transform="rotate(-7 22.5 52)"/><rect x="16" y="8" width="13" height="44" rx="6.5" fill="url(#scs2_ext3)" transform="rotate(-7 22.5 52)"/><ellipse cx="20" cy="10" rx="5.5" ry="4" fill="#FFE8CC" opacity="0.65" transform="rotate(-7 22.5 52)"/><rect x="34" y="8" width="13" height="44" rx="6.5" fill="url(#scs2_ext)" transform="rotate(7 40.5 52)"/><rect x="34" y="8" width="13" height="44" rx="6.5" fill="url(#scs2_ext2)" transform="rotate(7 40.5 52)"/><rect x="34" y="8" width="13" height="44" rx="6.5" fill="url(#scs2_ext3)" transform="rotate(7 40.5 52)"/><ellipse cx="40" cy="10" rx="5.5" ry="4" fill="#FFE8CC" opacity="0.65" transform="rotate(7 40.5 52)"/><path d="M29 52 Q31 35 33 8" stroke="#C07040" stroke-width="1.2" fill="none" opacity="0.18"/><ellipse cx="38" cy="62" rx="22" ry="10" fill="url(#scs2_hl)"/><ellipse cx="20" cy="10" rx="3.5" ry="2.5" fill="white" opacity="0.22" transform="rotate(-7 22.5 52)"/><ellipse cx="40" cy="10" rx="3.5" ry="2.5" fill="white" opacity="0.22" transform="rotate(7 40.5 52)"/></svg>`
 };
 
 // ── Build a tab bar HTML string ───────────────────────────────
